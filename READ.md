@@ -9,7 +9,11 @@ Name: Heather Hartley
 ![Screenshot](fotofinder2-1.png)
 
 ### On Mobile
-![Screenshot](fotofinder2-1.png)
+![Screenshot](fotofinder2-2.png)
 
-## Our project img
-![Screenshot](number_guesser_static_comp.png)
+## My project imgs
+### On Desktop
+![Screenshot]()
+
+### On Mobile
+![Screenshot]()
