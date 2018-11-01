@@ -1,5 +1,5 @@
 # Foto Finder Project
-Heather Hartley
+Name: Heather Hartley
 
 ## Overview
 - 
