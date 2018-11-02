@@ -11,7 +11,13 @@ Name: Heather Hartley
 - 2 models: data and DOM
 
 ## Unique Features
--
+- Individual cards for each submission (including: title, caption, and photo)
+- Photo cards that persist in localStorage
+- Cards that stay on page upon reload/refresh
+- Editable input fields
+- Unique buttons including a favorite button and show more/show less button
+- Respnsiveness on desktop and mobile views
+- Filtering by search
 
 ## Original Project Images
 ### On Desktop
