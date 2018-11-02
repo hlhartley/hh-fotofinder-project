@@ -15,7 +15,7 @@ Name: Heather Hartley
 - Photo cards that persist in localStorage and stay on the page upon reload/refresh
 - Editable input fields that save/update upon enter/click out
 - Unique buttons including a "favorite button" and "show more/show less button"
-- Respnsiveness on desktop and mobile views
+- Responsiveness on desktop and mobile views
 - Filtering by search
 
 ## Original Project Images
