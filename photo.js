@@ -13,7 +13,9 @@ class Photo {
 
   saveToStorage() {
     idCounter++;
-    debugger
+    newPhotoArray = JSON.parse(localStorage.newPhotoArray);
+    newPhotoArray.push(this);
+    localStorage.setItem('newPhotoArray', JSON.stringify(newPhotoArray));
   }
 
   deleteFromStorage() {
