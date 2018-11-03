@@ -151,7 +151,7 @@ article {
   width: 500px;
 }
 
-.images-container {
+.cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-column-gap: 10px;
@@ -193,7 +193,7 @@ article {
     justify-content: space-between;
     align-items: center;
 }
-  .images-container {
+  .cards-container {
     margin-top: 4%;
   }
 
@@ -217,7 +217,7 @@ article {
     padding-bottom: 20px;
     margin: auto;
   }
-  .images-container {
+  .cards-container {
     margin-top: 4%;
   }
 
