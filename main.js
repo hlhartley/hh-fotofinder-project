@@ -24,6 +24,7 @@ function addToAlbum(){
   event.preventDefault();
   const photo = new Photo(titleInput.value, captionInput.value);   
   createCardTemplate(photo.title, photo.caption);
+  clearInputs();
   };
 
 function createCardTemplate(title, caption) {
@@ -40,3 +41,8 @@ function createCardTemplate(title, caption) {
   `;
   cardsContainer.innerHTML = card + cardsContainer.innerHTML; 
 };
+
+function clearInputs() {
+  titleInput.value = '';
+  captionInput.value = '';
+}
