@@ -186,6 +186,22 @@ article {
   width: 25px;
 }
 
+.delete-btn {
+  background: url("images/delete.svg");
+}
+
+.delete-btn:hover {
+  background: url("images/delete-active.svg");
+}
+
+.favorite-btn {
+  background: url("images/favorite.svg");
+}
+
+.favorite-btn:hover {
+  background: url("images/favorite-active.svg");
+}
+
 @media screen and (max-width: 850px) {
   .nav-bar {
     display: flex;

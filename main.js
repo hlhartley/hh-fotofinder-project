@@ -37,8 +37,8 @@ function createCardTemplate(id, title, caption) {
       <p class="card-caption-output">${caption}
       </p>
       <p class="trash-fav-button-container">
-        <img onclick="deleteCard()" src="images/delete.svg" alt="delete button" class="delete-btn">
-        <img src="images/favorite.svg" alt="favorite button" class="favorite-btn">
+        <img onclick="deleteCard()" class="delete-btn">
+        <img class="favorite-btn">
       </p>
     </div>
   `;
