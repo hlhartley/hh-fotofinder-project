@@ -1,10 +1,10 @@
 class Photo {
-  constructor(id, title, caption) {
-    this.id = id;
+  constructor(title, caption) {
+    // this.id = 1;
     this.title = title;
     this.caption = caption;
-    this.file = file;
-    this.favorite = false;
+    // this.file = file;
+    // this.favorite = false;
   }
 
   saveToStorage() {
