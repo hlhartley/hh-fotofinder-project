@@ -16,7 +16,7 @@ var viewFavBtn = document.querySelector('.view-favorites-btn');
 
 
 // Event Listeners
-document.querySelector('.add-to-album-btn');addEventListener('click', addToAlbum);
+document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum);
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
 document.querySelector('.caption-input').addEventListener('keyup', disableAddToAlbumBtn);
 
@@ -27,9 +27,11 @@ function addToAlbum(){
   var titleInput = document.querySelector('.title-input');
   var captionInput = document.querySelector('.caption-input');
   event.preventDefault();
-  const photo = new Photo(1, titleInput.value, captionInput.value);   
+  const photo = new Photo(titleInput.value, captionInput.value);   
   createCardTemplate(photo.id, photo.title, photo.caption);
+  photo.saveToStorage();
   clearInputs();
+  updatePhotoArray();
   };
 
 function createCardTemplate(id, title, caption) {
@@ -72,6 +74,10 @@ function disableAddToAlbumBtn() {
   } else {
     addToAlbumBtn.disabled = false;
   }
+}
+
+function updatePhotoArray(){
+  return document.getElementsByClassName('card');
 }
 
 

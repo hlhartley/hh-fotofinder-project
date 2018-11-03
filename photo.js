@@ -1,6 +1,10 @@
+var idCounter = 1;
+var newPhotoArray = [];
+localStorage.setItem('newPhotoArray', JSON.stringify(newPhotoArray));
+
 class Photo {
-  constructor(id, title, caption) {
-    this.id = 1;
+  constructor(title, caption) {
+    this.id = idCounter;
     this.title = title;
     this.caption = caption;
     // this.file = file;
@@ -8,7 +12,8 @@ class Photo {
   }
 
   saveToStorage() {
-
+    idCounter++;
+    debugger
   }
 
   deleteFromStorage() {
@@ -19,3 +24,9 @@ class Photo {
 
   }
 }
+
+
+
+
+
+
