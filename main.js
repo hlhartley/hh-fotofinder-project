@@ -11,30 +11,33 @@
 // }
 
 var searchInput = document.querySelector('.search-bar-input');
-var titleInput = document.querySelector('.title-input');
-var captionInput = document.querySelector('.caption-input');
 var chooseFileBtn = document.querySelector('.choose-file-btn');
 var viewFavBtn = document.querySelector('.view-favorites-btn');
-var addToAlbumBtn = document.querySelector('.add-to-album-btn');
-var cardsContainer = document.querySelector('.cards-container');
 
+
+// Event Listeners
+var addToAlbumBtn = document.querySelector('.add-to-album-btn');
 addToAlbumBtn.addEventListener('click', addToAlbum);
 
+// Functions
 function addToAlbum(){
+  var titleInput = document.querySelector('.title-input');
+  var captionInput = document.querySelector('.caption-input');
   event.preventDefault();
-  const photo = new Photo(titleInput.value, captionInput.value);   
-  createCardTemplate(photo.title, photo.caption);
+  const photo = new Photo(1, titleInput.value, captionInput.value);   
+  createCardTemplate(photo.id, photo.title, photo.caption);
   clearInputs();
   };
 
-function createCardTemplate(title, caption) {
-  var card = `<div class="card">
+function createCardTemplate(id, title, caption) {
+  var cardsContainer = document.querySelector('.cards-container');
+  var card = `<div id=${id} class="card">
       <h2 class="card-title-output">${title}</h2>
       <img src="images/waterfall-img.png" class="background-img">
       <p class="card-caption-output">${caption}
       </p>
       <p class="trash-fav-button-container">
-        <img src="images/delete.svg" alt="delete button" class="delete-btn">
+        <img onclick="deleteCard()" src="images/delete.svg" alt="delete button" class="delete-btn">
         <img src="images/favorite.svg" alt="favorite button" class="favorite-btn">
       </p>
     </div>
@@ -43,6 +46,15 @@ function createCardTemplate(title, caption) {
 };
 
 function clearInputs() {
+  var titleInput = document.querySelector('.title-input');
+  var captionInput = document.querySelector('.caption-input');
   titleInput.value = '';
   captionInput.value = '';
+}
+
+function deleteCard() {
+  if (event.target.classList.contains('delete-btn')) {
+   event.target.closest('div').remove();
+   var cardToDeleteId = event.target.closest('div').id;
+  }
 }
