@@ -115,6 +115,11 @@ label {
 }
 
 /*Button Styles*/
+.add-to-album-btn:disabled {
+ opacity: .7;
+ background-color: #c2b2b4;
+}
+
 .three-buttons-container {
   color: #c2b2b4;
   display: flex;

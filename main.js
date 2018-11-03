@@ -18,7 +18,10 @@ var viewFavBtn = document.querySelector('.view-favorites-btn');
 // Event Listeners
 var addToAlbumBtn = document.querySelector('.add-to-album-btn');
 addToAlbumBtn.addEventListener('click', addToAlbum);
+document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
+document.querySelector('.caption-input').addEventListener('keyup', disableAddToAlbumBtn);
 
+  disableAddToAlbumBtn();
 // Functions
 function addToAlbum(){
   var titleInput = document.querySelector('.title-input');
@@ -58,3 +61,17 @@ function deleteCard() {
    var cardToDeleteId = event.target.closest('div').id;
   }
 }
+
+function disableAddToAlbumBtn() {
+  var titleInput = document.querySelector('.title-input');
+  var captionInput = document.querySelector('.caption-input');
+  var addToAlbumBtn = document.querySelector('.add-to-album-btn');
+   
+  if (titleInput.value === '' || captionInput.value === '') {
+    addToAlbumBtn.disabled = true;
+  } else {
+    addToAlbumBtn.disabled = false;
+  }
+}
+
+
