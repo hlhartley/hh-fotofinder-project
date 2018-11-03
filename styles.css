@@ -81,7 +81,7 @@ body {
   grid-template-columns: 1fr;
 }
 
-header {
+.top-container {
   background-color: #3e2a35;
   margin: auto;
   margin-top: 2.5%;
@@ -96,7 +96,7 @@ label {
   margin: 10px;
 }
 
-form {
+.user-input-form {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -187,20 +187,17 @@ article {
 }
 
 @media screen and (max-width: 850px) {
-  body {
-    background-color: blue;
-  }
   .nav-bar {
     display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
     align-items: center;
 }
+  .images-container {
+    margin-top: 4%;
+  }
 
 @media screen and (max-width: 700px) {
-  body {
-    background-color: pink;
-  }
   .title-input, .caption-input {
     width: 362px;
   }
@@ -220,24 +217,38 @@ article {
     padding-bottom: 20px;
     margin: auto;
   }
+  .images-container {
+    margin-top: 4%;
+  }
 
 @media screen and (max-width: 500px) {
-  body {
-    background-color: red;
+  h1.header-text {
+    font-size: 1.7em;
   }
-
-@media screen and (max-width: 320px) {
-  body {
-    background-color: yellow;
-    display: flex;
-    flex-direction: column;
+  .camera-logo {
+    width: 40px;
   }
   .title-input, .caption-input {
-    width: 250px;
+    width: 280px;
   }
-  .search-bar-input {
-    width: 215px;
+  .three-buttons-container {
+    margin: 0;
+    width: auto;
+  }
+  .two-buttons-container {
+    width: 100%;
+  }
+  .choose-file-btn {
+    width: 280px;
+  }
+  .view-favorites-btn, .add-to-album-btn {
+    width: 280px;
+  }
+  .add-to-album-btn {
+    margin-top: 20px;
   }
   .search-container {
-    width: 254px;
+    width: 280px;
   }
+
+  
