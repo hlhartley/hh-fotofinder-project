@@ -78,7 +78,6 @@ body, main {
 
 body {
   display: grid;
-  grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
 }
 
@@ -154,16 +153,17 @@ article {
 
 .images-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  height: 250px;
-  margin: 30px 40px;
-  text-align: center;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+  margin: 25px 35px;
 }
 
 .card {
   background-color: #fff;
   border: 2px solid #938284;
-  margin: 10px;
+  margin: auto;
+  width: 225px;
 }
 
 .background-img {
@@ -185,3 +185,59 @@ article {
 .delete-btn, .favorite-btn {
   width: 25px;
 }
+
+@media screen and (max-width: 850px) {
+  body {
+    background-color: blue;
+  }
+  .nav-bar {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    background-color: pink;
+  }
+  .title-input, .caption-input {
+    width: 362px;
+  }
+  .choose-file-btn {
+    width: 362px;
+    margin: auto;
+    margin-top: 10px;
+  }
+  .view-favorites-btn, .add-to-album-btn {
+    width: 150px;
+    margin: auto;
+  }
+  .two-buttons-container {
+    width: 423px;
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: auto;
+  }
+
+@media screen and (max-width: 500px) {
+  body {
+    background-color: red;
+  }
+
+@media screen and (max-width: 320px) {
+  body {
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+  }
+  .title-input, .caption-input {
+    width: 250px;
+  }
+  .search-bar-input {
+    width: 215px;
+  }
+  .search-container {
+    width: 254px;
+  }
