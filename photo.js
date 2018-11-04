@@ -22,10 +22,24 @@ class Photo {
 
   }
 
-  updatePhoto() {
-
+  updatePhoto(editedElement, editedID, editedText) {
+    debugger
+    // find specific photo - search by id in localStorage
+    var findPhotoId = JSON.parse(localStorage.newPhotoArray)
+    findPhotoId.find(function(editedID) {
+      return editedID;
+    })
+    // changed unedited to edited version (title and caption)
+    if (editedElement === 'title') {
+      this.title = editedText;
+    } else if (editedElement === 'caption') {
+      this.body = editedText;
+    } 
+    newPhotoArray.push(this);
+    localStorage.setItem('newPhotoArray', JSON.stringify(findPhotoId)); 
+    // localStorage.setItem(editedID, JSON.stringify(findPhotoId));
+    }
   }
-}
 
 
 
