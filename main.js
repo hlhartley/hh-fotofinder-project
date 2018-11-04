@@ -9,8 +9,8 @@ document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
 document.querySelector('.caption-input').addEventListener('keyup', disableAddToAlbumBtn);
 
-addToAlbum();
 disableAddToAlbumBtn();
+displayPhotos();
 
 // Functions
 function addToAlbum(){
@@ -39,6 +39,12 @@ function createCardTemplate(id, title, caption) {
   `;
   cardsContainer.innerHTML = card + cardsContainer.innerHTML; 
 };
+
+function displayPhotos(){
+  Photo.prototype.newPhotoArray().forEach(function(photo) {
+    createCardTemplate(photo.id, photo.title, photo.caption);
+  })
+}
 
 function clearInputs() {
   var titleInput = document.querySelector('.title-input');

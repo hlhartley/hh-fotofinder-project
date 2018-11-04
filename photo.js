@@ -10,6 +10,10 @@ class Photo {
     // this.favorite = false;
   }
 
+  newPhotoArray() {
+    return JSON.parse(localStorage.newPhotoArray);
+  }
+
   saveToStorage() {
     idCounter++;
     let newPhotoArray;
@@ -17,7 +21,7 @@ class Photo {
     // let newPhotoArray = JSON.parse(localStorage.newPhotoArray || '[]')
 
     if (localStorage.newPhotoArray) {
-      newPhotoArray = JSON.parse(localStorage.newPhotoArray);
+      newPhotoArray = this.newPhotoArray();
     } else {
       newPhotoArray = [];
     }
@@ -34,7 +38,7 @@ class Photo {
 
   updatePhoto(editedElement, editedID, editedText) {
     // find specific photo - search by id in localStorage
-    let photos = JSON.parse(localStorage.newPhotoArray)
+    let photos = this.newPhotoArray();
     let targetPhoto = photos.find(function(targetPhoto) {
       return targetPhoto.id == editedID;
     })
