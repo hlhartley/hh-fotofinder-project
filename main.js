@@ -37,9 +37,9 @@ function addToAlbum(){
 function createCardTemplate(id, title, caption) {
   var cardsContainer = document.querySelector('.cards-container');
   var card = `<div id=${id} class="card">
-      <h2 onkeydown="pressEnterKey('title')" data-titleID="${id}" class="card-title-output" contenteditable="true">${title}</h2>
+      <h2 onkeydown="pressEnterKey('title')" onfocusout="saveUserInput('title')" data-titleID="${id}" class="card-title-output" contenteditable="true">${title}</h2>
       <img src="images/waterfall-img.png" class="card-img">
-      <p onkeydown="pressEnterKey('caption')" data-captionID="${id}" class="card-caption-output" contenteditable="true">${caption}
+      <p onkeydown="pressEnterKey('caption')" onfocusout="saveUserInput('caption')" data-captionID="${id}" class="card-caption-output" contenteditable="true">${caption}
       </p>
       <p class="trash-fav-button-container">
         <img onclick="deleteCard()" class="delete-btn">
@@ -76,7 +76,7 @@ function disableAddToAlbumBtn() {
   }
 }
 
-function updatePhotoArray(){
+function updatePhotoArray() {
   return document.getElementsByClassName('card');
 }
 
@@ -100,7 +100,7 @@ function saveUserInput(element) {
     var editedID = event.target.dataset.captionid;
     var editedText = event.target.innerText;
   }
-  updatePhoto(editedElement, editedID, editedText);
+  Photo.prototype.updatePhoto(editedElement, editedID, editedText);
 }
 
 
