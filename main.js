@@ -1,18 +1,7 @@
-// function noGlobVars(string) {
-//   return document.querySelector(string);
-// };
 
-// var hello = noGlobVars('.guy');
-// var  hello = document.querySelector('.guy');
-
-// function hi () {
-// var navBar = noGlobVars('.nav-bar');
-// navBar.remove()
-// }
-
-var searchInput = document.querySelector('.search-bar-input');
-var chooseFileBtn = document.querySelector('.choose-file-btn');
-var viewFavBtn = document.querySelector('.view-favorites-btn');
+// var searchInput = document.querySelector('.search-bar-input');
+// var chooseFileBtn = document.querySelector('.choose-file-btn');
+// var viewFavBtn = document.querySelector('.view-favorites-btn');
 
 
 // Event Listeners
@@ -20,6 +9,7 @@ document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
 document.querySelector('.caption-input').addEventListener('keyup', disableAddToAlbumBtn);
 
+addToAlbum();
 disableAddToAlbumBtn();
 
 // Functions
@@ -89,7 +79,6 @@ function pressEnterKey() {
 }
 
 function saveUserInput(element) {
-  debugger
   if(element === 'title') {
     var editedElement = 'title';
     var editedID = event.target.dataset.titleid;
@@ -105,3 +94,14 @@ function saveUserInput(element) {
 
 
 
+// function noGlobVars(string) {
+//   return document.querySelector(string);
+// };
+
+// var hello = noGlobVars('.guy');
+// var  hello = document.querySelector('.guy');
+
+// function hi () {
+// var navBar = noGlobVars('.nav-bar');
+// navBar.remove()
+// }
