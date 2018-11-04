@@ -16,7 +16,7 @@ var viewFavBtn = document.querySelector('.view-favorites-btn');
 
 
 // Event Listeners
-document.querySelector('.add-to-album-btn');addEventListener('click', addToAlbum);
+document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum);
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
 document.querySelector('.caption-input').addEventListener('keyup', disableAddToAlbumBtn);
 
@@ -27,17 +27,19 @@ function addToAlbum(){
   var titleInput = document.querySelector('.title-input');
   var captionInput = document.querySelector('.caption-input');
   event.preventDefault();
-  const photo = new Photo(1, titleInput.value, captionInput.value);   
+  const photo = new Photo(titleInput.value, captionInput.value);   
   createCardTemplate(photo.id, photo.title, photo.caption);
+  photo.saveToStorage();
   clearInputs();
+  updatePhotoArray();
   };
 
 function createCardTemplate(id, title, caption) {
   var cardsContainer = document.querySelector('.cards-container');
   var card = `<div id=${id} class="card">
-      <h2 class="card-title-output">${title}</h2>
+      <h2 onkeydown="pressEnterKey('title')" class="card-title-output" contenteditable="true">${title}</h2>
       <img src="images/waterfall-img.png" class="card-img">
-      <p class="card-caption-output">${caption}
+      <p onkeydown="pressEnterKey('caption')" class="card-caption-output" contenteditable="true">${caption}
       </p>
       <p class="trash-fav-button-container">
         <img onclick="deleteCard()" class="delete-btn">
@@ -73,5 +75,27 @@ function disableAddToAlbumBtn() {
     addToAlbumBtn.disabled = false;
   }
 }
+
+function updatePhotoArray(){
+  return document.getElementsByClassName('card');
+}
+
+function pressEnterKey() {
+  const key = event.keyCode;
+  if (key === 13) { 
+    event.preventDefault();
+    // saveUserInput(type);
+  }
+}
+
+function saveUserInput(element) {
+  if(element === 'title') {
+    var changedTitle = 
+  }
+  else if(element === 'caption') {
+    var changedCaption = 
+  }
+}
+
 
 
