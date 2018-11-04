@@ -22,8 +22,12 @@ class Photo {
 
   }
 
-  updatePhoto() {
-
+  updatePhoto(editedElement, editedID, editedText) {
+    find specific photo - search by id in localStorage
+    changed unedited to edited version (title and caption)
+    photo.caption = editedText
+    photo.title =
+    stringify => savetolocalStorage
   }
 }
 
