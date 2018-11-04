@@ -58,6 +58,9 @@ function deleteCard() {
    event.target.closest('div').remove();
    var cardToDeleteId = event.target.closest('div').id;
   }
+  Photo.prototype.deleteFromStorage(cardToDeleteId);
+  displayPhotos();
+  updatePhotoArray();
 }
 
 function disableAddToAlbumBtn() {

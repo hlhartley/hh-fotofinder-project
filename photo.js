@@ -1,5 +1,4 @@
 var idCounter = 1;
-// localStorage.setItem('newPhotoArray', JSON.stringify([]));
 
 class Photo {
   constructor(title, caption) {
@@ -11,38 +10,35 @@ class Photo {
   }
 
   newPhotoArray() {
-    return JSON.parse(localStorage.newPhotoArray);
+    if (localStorage.newPhotoArray) {
+      return JSON.parse(localStorage.newPhotoArray);
+    } else {
+      return [];
+    }
   }
 
   saveToStorage() {
     idCounter++;
-    let newPhotoArray;
+    let newPhotoArray = this.newPhotoArray();
 
-    // let newPhotoArray = JSON.parse(localStorage.newPhotoArray || '[]')
-
-    if (localStorage.newPhotoArray) {
-      newPhotoArray = this.newPhotoArray();
-    } else {
-      newPhotoArray = [];
-    }
     newPhotoArray.push(this);
     localStorage.setItem('newPhotoArray', JSON.stringify(newPhotoArray));
   }
 
-  deleteFromStorage() {
-    // parse from localStorage
-    // find card id from array
-    // remove from array 
-    // put back into local storage
+  deleteFromStorage(cardToDeleteId) {
+    let photos = this.newPhotoArray();
+    let keepPhotos = photos.filter(function(photo) {
+      return photo.id != cardToDeleteId;
+    })
+    debugger
+     localStorage.setItem('newPhotoArray', JSON.stringify(keepPhotos));
   }
 
   updatePhoto(editedElement, editedID, editedText) {
-    // find specific photo - search by id in localStorage
     let photos = this.newPhotoArray();
     let targetPhoto = photos.find(function(targetPhoto) {
       return targetPhoto.id == editedID;
     })
-    // changed unedited to edited version (title and caption)
     if (editedElement === 'title') {
       targetPhoto.title = editedText;
     } else if (editedElement === 'caption') {
@@ -51,9 +47,3 @@ class Photo {
     localStorage.setItem('newPhotoArray', JSON.stringify(photos)); 
   }
 }
-
-
-
-
-
-
