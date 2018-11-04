@@ -1,18 +1,7 @@
-// function noGlobVars(string) {
-//   return document.querySelector(string);
-// };
 
-// var hello = noGlobVars('.guy');
-// var  hello = document.querySelector('.guy');
-
-// function hi () {
-// var navBar = noGlobVars('.nav-bar');
-// navBar.remove()
-// }
-
-var searchInput = document.querySelector('.search-bar-input');
-var chooseFileBtn = document.querySelector('.choose-file-btn');
-var viewFavBtn = document.querySelector('.view-favorites-btn');
+// var searchInput = document.querySelector('.search-bar-input');
+// var chooseFileBtn = document.querySelector('.choose-file-btn');
+// var viewFavBtn = document.querySelector('.view-favorites-btn');
 
 
 // Event Listeners
@@ -21,6 +10,7 @@ document.querySelector('.title-input').addEventListener('keyup', disableAddToAlb
 document.querySelector('.caption-input').addEventListener('keyup', disableAddToAlbumBtn);
 
 disableAddToAlbumBtn();
+displayPhotos();
 
 // Functions
 function addToAlbum(){
@@ -50,6 +40,12 @@ function createCardTemplate(id, title, caption) {
   cardsContainer.innerHTML = card + cardsContainer.innerHTML; 
 };
 
+function displayPhotos(){
+  Photo.prototype.newPhotoArray().forEach(function(photo) {
+    createCardTemplate(photo.id, photo.title, photo.caption);
+  })
+}
+
 function clearInputs() {
   var titleInput = document.querySelector('.title-input');
   var captionInput = document.querySelector('.caption-input');
@@ -62,6 +58,9 @@ function deleteCard() {
    event.target.closest('div').remove();
    var cardToDeleteId = event.target.closest('div').id;
   }
+  Photo.prototype.deleteFromStorage(cardToDeleteId);
+  displayPhotos();
+  updatePhotoArray();
 }
 
 function disableAddToAlbumBtn() {
@@ -89,7 +88,6 @@ function pressEnterKey() {
 }
 
 function saveUserInput(element) {
-  debugger
   if(element === 'title') {
     var editedElement = 'title';
     var editedID = event.target.dataset.titleid;
@@ -105,3 +103,14 @@ function saveUserInput(element) {
 
 
 
+// function noGlobVars(string) {
+//   return document.querySelector(string);
+// };
+
+// var hello = noGlobVars('.guy');
+// var  hello = document.querySelector('.guy');
+
+// function hi () {
+// var navBar = noGlobVars('.nav-bar');
+// navBar.remove()
+// }

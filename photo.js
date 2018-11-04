@@ -1,6 +1,4 @@
 var idCounter = 1;
-var newPhotoArray = [];
-localStorage.setItem('newPhotoArray', JSON.stringify(newPhotoArray));
 
 class Photo {
   constructor(title, caption) {
@@ -11,38 +9,41 @@ class Photo {
     // this.favorite = false;
   }
 
+  newPhotoArray() {
+    if (localStorage.newPhotoArray) {
+      return JSON.parse(localStorage.newPhotoArray);
+    } else {
+      return [];
+    }
+  }
+
   saveToStorage() {
     idCounter++;
-    newPhotoArray = JSON.parse(localStorage.newPhotoArray);
+    let newPhotoArray = this.newPhotoArray();
+
     newPhotoArray.push(this);
     localStorage.setItem('newPhotoArray', JSON.stringify(newPhotoArray));
   }
 
-  deleteFromStorage() {
-
+  deleteFromStorage(cardToDeleteId) {
+    let photos = this.newPhotoArray();
+    let keepPhotos = photos.filter(function(photo) {
+      return photo.id != cardToDeleteId;
+    })
+    debugger
+     localStorage.setItem('newPhotoArray', JSON.stringify(keepPhotos));
   }
 
   updatePhoto(editedElement, editedID, editedText) {
-    debugger
-    // find specific photo - search by id in localStorage
-    var findPhotoId = JSON.parse(localStorage.newPhotoArray)
-    findPhotoId.find(function(editedID) {
-      return editedID;
+    let photos = this.newPhotoArray();
+    let targetPhoto = photos.find(function(targetPhoto) {
+      return targetPhoto.id == editedID;
     })
-    // changed unedited to edited version (title and caption)
     if (editedElement === 'title') {
-      this.title = editedText;
+      targetPhoto.title = editedText;
     } else if (editedElement === 'caption') {
-      this.body = editedText;
+      targetPhoto.caption = editedText;
     } 
-    newPhotoArray.push(this);
-    localStorage.setItem('newPhotoArray', JSON.stringify(findPhotoId)); 
-    // localStorage.setItem(editedID, JSON.stringify(findPhotoId));
-    }
+    localStorage.setItem('newPhotoArray', JSON.stringify(photos)); 
   }
-
-
-
-
-
-
+}
