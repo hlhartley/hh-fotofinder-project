@@ -1,7 +1,4 @@
-
-// var searchInput = document.querySelector('.search-bar-input');
 // var chooseFileBtn = document.querySelector('.choose-file-btn');
-// var viewFavBtn = document.querySelector('.view-favorites-btn');
 
 
 // Event Listeners
@@ -23,7 +20,6 @@ function addToAlbum(){
   createCardTemplate(photo.id, photo.title, photo.caption);
   photo.saveToStorage();
   clearInputs();
-  updatePhotoArray();
   };
 
 function createCardTemplate(id, title, caption) {
@@ -35,7 +31,7 @@ function createCardTemplate(id, title, caption) {
       </p>
       <p class="trash-fav-button-container">
         <img onclick="deleteCard()" class="delete-btn">
-        <img class="favorite-btn">
+        <img onclick="favoriteHeartButton()" data-photoID="${id}" class="favorite-btn">
       </p>
     </div>
   `;
@@ -46,6 +42,24 @@ function displayPhotos(){
   Photo.prototype.newPhotoArray().forEach(function(photo) {
     createCardTemplate(photo.id, photo.title, photo.caption);
   })
+}
+
+function displayFilteredPhotos(photos) {
+  photos.forEach(function(photo) {
+    createCardTemplate(photo.id, photo.title, photo.caption);
+  }) 
+}
+
+function filterSearch() {
+  console.log('hi');
+  var searchBarInput = document.querySelector('.search-bar-input');
+  var filterInput = searchBarInput.value.toLowerCase();
+
+  var filteredPhotos = Photo.prototype.newPhotoArray().filter(function(photo) {
+    return photo.title.toLowerCase().includes(filterInput) || photo.caption.toLowerCase().includes(filterInput);
+  })
+  clearCardContainer();
+  displayFilteredPhotos(filteredPhotos);
 }
 
 function clearInputs() {
@@ -61,8 +75,8 @@ function deleteCard() {
    var cardToDeleteId = event.target.closest('div').id;
   }
   Photo.prototype.deleteFromStorage(cardToDeleteId);
+  clearCardContainer();
   displayPhotos();
-  updatePhotoArray();
 }
 
 function disableAddToAlbumBtn() {
@@ -77,9 +91,9 @@ function disableAddToAlbumBtn() {
   }
 }
 
-function updatePhotoArray() {
-  return document.getElementsByClassName('card');
-}
+// function updatePhotoArray() {
+//   return document.getElementsByClassName('card');
+// }
 
 function pressEnterKey() {
   const key = event.keyCode;
@@ -103,42 +117,45 @@ function saveUserInput(element) {
   Photo.prototype.updatePhoto(editedElement, editedID, editedText);
 }
 
-function filterSearch() {
-  debugger
-  console.log('hi');
-  var searchBarInput = document.querySelector('.search-bar-input');
-  var filterInput = searchBarInput.value.toLowerCase();
-  var photoArray = updatePhotoArray();
-  for (var i = 0; i < photoArray.length; i++) {
-    if (body === -1 && caption === -1) {
-      photoArray[i].setAttribute('style', 'display: none');
-    } else {
-      photoArray[i].setAttribute('style', 'display: block');
-  }
+function clearCardContainer() {
+  var cardsContainer = document.querySelector('.cards-container');
+  cardsContainer.innerHTML = '';
 }
 
-document.querySelector('.show-more-btn').classList.toggle('more-less-toggle');
-document.querySelector('.show-less-btn').classList.toggle('more-less-toggle');
 
-function showMore() {
-  var showMoreBtn = document.querySelector('.show-more-btn');
-  var showLessBtn = document.querySelector('.show-less-btn');
-  if number of cards <= 10 no buttons
-  if number of cards > 10/11+ cards then show more button active
-    if clicked, display all cards
-}
+// document.querySelector('.show-more-btn').classList.toggle('more-less-toggle');
+// document.querySelector('.show-less-btn').classList.toggle('more-less-toggle');
 
-function showLess() {
-  var showMoreBtn = document.querySelector('.show-more-btn');
-  var showLessBtn = document.querySelector('.show-less-btn');
-  if number of cards >= 11+ then can show less button active and show more button is deactivated
-    if show less button is clicked, only 10 cards are displayed
-}
+// function showMore() {
+//   var showMoreBtn = document.querySelector('.show-more-btn');
+//   var showLessBtn = document.querySelector('.show-less-btn');
+  
+//   Photo.prototype.newPhotoArray().length
+
+//   if number of cards <= 10 no buttons
+//   if number of cards > 10/11+ cards then show more button active
+//     if clicked, display all cards
+// }
+
+// function showLess() {
+//   var showMoreBtn = document.querySelector('.show-more-btn');
+//   var showLessBtn = document.querySelector('.show-less-btn');
+//   if number of cards >= 11+ then can show less button active and show more button is deactivated
+//     if show less button is clicked, only 10 cards are displayed
+// }
+
+
+var viewFavBtn = document.querySelector('.view-favorites-btn');
 
 function favoriteHeartButton () {
+  console.log('hello');
+}
+  var favoritedPhoto = event.target.dataset.photoid;
   if clicked, active favorite heart button
+
   becomes one of "favorites"
   changes # favorites on view favorites button
+    this.favorites.length = viewfavoritesbutton#.innerText;
 }
 
 function viewFavoritesButtons () {
