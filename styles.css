@@ -69,6 +69,7 @@ button:hover {
   border-bottom-right-radius: 6px;
   border-left-style: none;
   border-top-right-radius: 6px;
+  cursor: pointer;
   height: 44px;
   text-align: center;
 }
@@ -137,13 +138,17 @@ label {
   width: 500px;
 }
 
-#file {
-  display: none;
+.choose-file-label {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
 }
 
-.choose-file-label {
-  text-align: center;
-  padding-top: 17px;
+.choose-file-label:hover {
+  background-color: #e26d5a;
+  cursor: pointer;
+  opacity: .9; 
 }
 
 .choose-file-label, .view-favorites-btn, .add-to-album-btn, .show-more-btn, .show-less-btn {
@@ -155,22 +160,19 @@ label {
   height: 41px;
 }
 
-.choose-file-label {
-  margin: 20px 0 30px;
-  width: 500px;
-}
-
 #file {
   display: none;
 }
 
 .view-favorites-btn, .add-to-album-btn {
+  cursor: pointer;
   margin-bottom: 30px;
   width: 225px;
 }
 
 .show-more-btn, .show-less-btn {
   border: 2px solid #938284;
+  cursor: pointer;
   font-size: .8em;
   height: 45px;
   width: 100%;
@@ -221,6 +223,7 @@ article {
 }
 
 .delete-btn, .favorite-btn {
+  cursor: pointer;
   width: 25px;
 }
 
