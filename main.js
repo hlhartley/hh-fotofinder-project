@@ -8,10 +8,12 @@
 document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum);
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
 document.querySelector('.caption-input').addEventListener('keyup', disableAddToAlbumBtn);
+document.querySelector('.search-bar-input').addEventListener('keyup', filterSearch);
 
 document.querySelector('.show-more-btn').classList.toggle('more-less-toggle');
 document.querySelector('.show-less-btn').classList.toggle('more-less-toggle');
 
+// On page refresh
 disableAddToAlbumBtn();
 displayPhotos();
 
@@ -102,6 +104,13 @@ function saveUserInput(element) {
     var editedText = event.target.innerText;
   }
   Photo.prototype.updatePhoto(editedElement, editedID, editedText);
+}
+
+function filterSearch() {
+  var searchBarInput = document.querySelector('.search-bar-input');
+  var filterInput = searchBarInput.value.toLowerCase();
+  var photoArray = updatePhotoArray();
+  console.log('hi');
 }
 
 
