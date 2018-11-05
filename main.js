@@ -50,7 +50,7 @@ function createCardTemplate(id, title, caption, photoresult) {
   var card = `<div id=${id} class="card">
       <h2 onkeydown="pressEnterKey('title')" onfocusout="saveUserInput('title')" data-titleID="${id}" class="card-title-output" contenteditable="true">${title}</h2>
       <div class="file-display-area">
-        <img src="${photoresult}">
+        <img src="${photoresult}" class="card-img">
       </div>
       <p onkeydown="pressEnterKey('caption')" onfocusout="saveUserInput('caption')" data-captionID="${id}" class="card-caption-output" contenteditable="true">${caption}
       </p>
