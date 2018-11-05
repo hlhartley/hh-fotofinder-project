@@ -107,9 +107,9 @@ label {
 }
 
 .user-input-form {
+  align-items: center;
   display: flex;
   flex-flow: column wrap;
-  align-items: center;
   justify-content: center;
 }
 
@@ -171,6 +171,10 @@ label {
   cursor: pointer;
   margin-bottom: 30px;
   width: 225px;
+}
+
+.display-none {
+  display: none;
 }
 
 .show-more-btn, .show-less-btn {

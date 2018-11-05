@@ -6,7 +6,8 @@ document.querySelector('.search-bar-input').addEventListener('keyup', filterSear
 
 // On page refresh
 disableAddToAlbumBtn();
-displayPhotos();
+displayAllPhotos();
+showMoreLess();
 
 // Functions
 var reader = new FileReader();
@@ -18,6 +19,7 @@ function addToAlbum(){
       reader.readAsDataURL(fileInput.files[0]); 
       reader.onload = addPhoto;
     };
+    showMoreLess();
   };
 
 function addPhoto(e) {
@@ -45,7 +47,6 @@ function appendPhotos() {
 };
 
 function createCardTemplate(id, title, caption, photoresult) {
-  console.log(photoresult);
   var cardsContainer = document.querySelector('.cards-container');
   var card = `<div id=${id} class="card">
       <h2 onkeydown="pressEnterKey('title')" onfocusout="saveUserInput('title')" data-titleID="${id}" class="card-title-output" contenteditable="true">${title}</h2>
@@ -63,7 +64,7 @@ function createCardTemplate(id, title, caption, photoresult) {
   cardsContainer.innerHTML = card + cardsContainer.innerHTML; 
 };
 
-function displayPhotos(){
+function displayAllPhotos(){
   Photo.prototype.newPhotoArray().forEach(function(photo) {
     createCardTemplate(photo.id, photo.title, photo.caption);
   })
@@ -101,7 +102,7 @@ function deleteCard() {
   }
   Photo.prototype.deleteFromStorage(cardToDeleteId);
   clearCardContainer();
-  displayPhotos();
+  displayAllPhotos();
 }
 
 function disableAddToAlbumBtn() {
@@ -160,26 +161,30 @@ function viewFavoritesButton () {
   })
 }
 
-// document.querySelector('.show-more-btn').classList.toggle('more-less-toggle');
-// document.querySelector('.show-less-btn').classList.toggle('more-less-toggle');
+document.querySelector('.show-more-btn').addEventListener('click', showMoreLess);
+document.querySelector('.show-less-btn').addEventListener('click', showMoreLess);
 
-// function showMore() {
-//   var showMoreBtn = document.querySelector('.show-more-btn');
-//   var showLessBtn = document.querySelector('.show-less-btn');
-  
-//   Photo.prototype.newPhotoArray().length
+function showMoreLess() {
+  var showMoreBtn = document.querySelector('.show-more-btn');
+  var showLessBtn = document.querySelector('.show-less-btn');
+    showMoreBtn.classList.toggle('more-less-toggle');
+    showLessBtn.classList.toggle('more-less-toggle');
 
-//   if number of cards <= 10 no buttons
-//   if number of cards > 10/11+ cards then show more button active
-//     if clicked, display all cards
-// }
+  // if (Photo.prototype.newPhotoArray().length >= 10) {
+    // showMoreBtn.classList.remove('display-none');
+    // showLessBtn.classList.add('display-none');
+    // showMoreBtn.classList.toggle('more-less-toggle');
+    // showLessBtn.classList.toggle('more-less-toggle');
+    // click display more => display 11+ photos
+  // } else {
+    // showMoreBtn.classList.add('display-none');
+    // showLessBtn.classList.remove('display-none');
+    // showMoreBtn.classList.toggle('more-less-toggle');
+    // showLessBtn.classList.toggle('more-less-toggle');
+    // display show less btn
+    // show less btn => display 10 or less photos
+  }
 
-// function showLess() {
-//   var showMoreBtn = document.querySelector('.show-more-btn');
-//   var showLessBtn = document.querySelector('.show-less-btn');
-//   if number of cards >= 11+ then can show less button active and show more button is deactivated
-//     if show less button is clicked, only 10 cards are displayed
-// }
 
 
 
