@@ -161,10 +161,10 @@ function viewFavoritesButton () {
   })
 }
 
-document.querySelector('.show-more-btn').addEventListener('click', showMoreLess);
-document.querySelector('.show-less-btn').addEventListener('click', showMoreLess);
+document.querySelector('.show-more-btn').addEventListener('click', showMoreLessCards);
+document.querySelector('.show-less-btn').addEventListener('click', showMoreLessCards);
 
-function showMoreLess() {
+function showMoreLessCards() {
   var showMoreBtn = document.querySelector('.show-more-btn');
   var showLessBtn = document.querySelector('.show-less-btn');
     showMoreBtn.classList.toggle('more-less-toggle');
