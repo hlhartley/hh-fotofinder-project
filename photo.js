@@ -1,11 +1,11 @@
 var idCounter = 1;
 
 class Photo {
-  constructor(title, caption) {
+  constructor(title, caption, file) {
     this.id = idCounter;
     this.title = title;
     this.caption = caption;
-    // this.file = file;
+    this.file = file;
     this.favorite = false;
   }
 
@@ -44,7 +44,7 @@ class Photo {
     } 
     localStorage.setItem('newPhotoArray', JSON.stringify(photos)); 
   }
-  
+
   saveFavoritePhotos() {
     let photos = this.newPhotoArray();
     var favoritedPhotoId = event.target.dataset.photoid;

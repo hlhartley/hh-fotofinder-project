@@ -1,5 +1,3 @@
-// var chooseFileBtn = document.querySelector('.choose-file-btn');
-
 // Event Listeners
 document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum);
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
@@ -11,21 +9,50 @@ disableAddToAlbumBtn();
 displayPhotos();
 
 // Functions
+var reader = new FileReader();
+window.onload = appendPhotos;
+
 function addToAlbum(){
+  let fileInput = document.querySelector('.choose-file-btn');
+    if (fileInput.files[0]) {
+      reader.readAsDataURL(fileInput.files[0]); 
+      reader.onload = addPhoto;
+    };
+  };
+
+function addPhoto(e) {
+  const photoGallery = document.querySelector('.file-display-area');
+  const imagesArr = JSON.parse(localStorage.getItem('photos')) || [];
+  const newPhoto = new Photo(Date.now(), e.target.result);
+    photoGallery.innerHTML += `<img src=${e.target.result} />`;
+    imagesArr.push(newPhoto);
+    newPhoto.saveToStorage(imagesArr)
+};
+
+function addPhoto(e) {
   var titleInput = document.querySelector('.title-input');
   var captionInput = document.querySelector('.caption-input');
   event.preventDefault();
   const photo = new Photo(titleInput.value, captionInput.value);   
-  createCardTemplate(photo.id, photo.title, photo.caption);
+  createCardTemplate(photo.id, photo.title, photo.caption, e.target.result);
   photo.saveToStorage();
   clearInputs();
-  };
+}
 
-function createCardTemplate(id, title, caption) {
+
+function appendPhotos() {
+  var imagesArr = JSON.parse(localStorage.getItem('photos')) || [];
+  imagesArr.forEach(photo => photoGallery.innerHTML += `<img src=${photo.file} />`)
+};
+
+function createCardTemplate(id, title, caption, photoresult) {
+  console.log(photoresult);
   var cardsContainer = document.querySelector('.cards-container');
   var card = `<div id=${id} class="card">
       <h2 onkeydown="pressEnterKey('title')" onfocusout="saveUserInput('title')" data-titleID="${id}" class="card-title-output" contenteditable="true">${title}</h2>
-      <img src="images/waterfall-img.png" class="card-img">
+      <div class="file-display-area">
+        <img src="${photoresult}">
+      </div>
       <p onkeydown="pressEnterKey('caption')" onfocusout="saveUserInput('caption')" data-captionID="${id}" class="card-caption-output" contenteditable="true">${caption}
       </p>
       <p class="trash-fav-button-container">
