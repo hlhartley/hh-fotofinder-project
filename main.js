@@ -13,7 +13,7 @@ var reader = new FileReader();
 window.onload = appendPhotos;
 
 function addToAlbum(){
-  let fileInput = document.querySelector('.choose-file-btn');
+  let fileInput = document.querySelector('.file');
     if (fileInput.files[0]) {
       reader.readAsDataURL(fileInput.files[0]); 
       reader.onload = addPhoto;
@@ -38,7 +38,6 @@ function addPhoto(e) {
   photo.saveToStorage();
   clearInputs();
 }
-
 
 function appendPhotos() {
   var imagesArr = JSON.parse(localStorage.getItem('photos')) || [];

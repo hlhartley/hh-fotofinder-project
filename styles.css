@@ -137,17 +137,31 @@ label {
   width: 500px;
 }
 
-.choose-file-btn, .view-favorites-btn, .add-to-album-btn, .show-more-btn, .show-less-btn {
+#file {
+  display: none;
+}
+
+.choose-file-label {
+  text-align: center;
+  padding-top: 17px;
+}
+
+.choose-file-label, .view-favorites-btn, .add-to-album-btn, .show-more-btn, .show-less-btn {
   background-color: #5b4447;
   border: none;
   color: #fff;
+  font-size: .8em;
   font-weight: 400;
   height: 41px;
 }
 
-.choose-file-btn {
+.choose-file-label {
   margin: 20px 0 30px;
   width: 500px;
+}
+
+#file {
+  display: none;
 }
 
 .view-favorites-btn, .add-to-album-btn {
@@ -238,11 +252,11 @@ article {
     margin-top: 4%;
   }
 
-  .title-input, .caption-input, .choose-file-btn {
+  .title-input, .caption-input, .choose-file-label {
     width: 362px;
   }
 
-  .choose-file-btn {
+  .choose-file-label {
     margin: auto;
     margin-top: 10px;
   }
@@ -277,7 +291,7 @@ article {
     width: 40px;
   }
 
-  .title-input, .caption-input, .choose-file-btn, .view-favorites-btn, .add-to-album-btn, .search-container {
+  .title-input, .caption-input, .choose-file-label, .view-favorites-btn, .add-to-album-btn, .search-container {
     width: 280px;
   }
 
