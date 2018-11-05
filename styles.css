@@ -227,8 +227,6 @@ article {
   .cards-container {
     margin-top: 4%;
   }
-
-@media screen and (max-width: 700px) {
   .title-input, .caption-input {
     width: 362px;
   }
@@ -250,6 +248,9 @@ article {
   }
   .cards-container {
     margin-top: 4%;
+  }
+  .three-buttons-container {
+    width: 475px;
   }
 
 @media screen and (max-width: 500px) {
