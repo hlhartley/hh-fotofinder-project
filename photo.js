@@ -30,7 +30,6 @@ class Photo {
     let keepPhotos = photos.filter(function(photo) {
       return photo.id != cardToDeleteId;
     })
-    debugger
      localStorage.setItem('newPhotoArray', JSON.stringify(keepPhotos));
   }
 
