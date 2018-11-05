@@ -6,7 +6,7 @@ class Photo {
     this.title = title;
     this.caption = caption;
     // this.file = file;
-    // this.favorite = false;
+    this.favorite = false;
   }
 
   newPhotoArray() {
@@ -20,7 +20,6 @@ class Photo {
   saveToStorage() {
     idCounter++;
     let newPhotoArray = this.newPhotoArray();
-
     newPhotoArray.push(this);
     localStorage.setItem('newPhotoArray', JSON.stringify(newPhotoArray));
   }
@@ -44,5 +43,17 @@ class Photo {
       targetPhoto.caption = editedText;
     } 
     localStorage.setItem('newPhotoArray', JSON.stringify(photos)); 
+  }
+  
+  saveFavoritePhotos() {
+    let photos = this.newPhotoArray();
+    var favoritedPhotoId = event.target.dataset.photoid;
+    let favoritePhoto = photos.find(function(photo) {
+      return photo.id == favoritedPhotoId;
+    })
+    if (favoritePhoto) {
+      favoritePhoto.favorite = true;
+    }
+    localStorage.setItem('newPhotoArray', JSON.stringify(photos));
   }
 }

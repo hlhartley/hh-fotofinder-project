@@ -122,6 +122,15 @@ function clearCardContainer() {
   cardsContainer.innerHTML = '';
 }
 
+function favoriteHeartButton () {
+  Photo.prototype.saveFavoritePhotos();
+}
+  
+function viewFavoritesButtons () {
+var viewFavBtn = document.querySelector('.view-favorites-btn');
+//   if clicked, can see all cards with active favorite heart button
+  
+}
 
 // document.querySelector('.show-more-btn').classList.toggle('more-less-toggle');
 // document.querySelector('.show-less-btn').classList.toggle('more-less-toggle');
@@ -145,22 +154,7 @@ function clearCardContainer() {
 // }
 
 
-var viewFavBtn = document.querySelector('.view-favorites-btn');
 
-function favoriteHeartButton () {
-  console.log('hello');
-}
-  var favoritedPhoto = event.target.dataset.photoid;
-  if clicked, active favorite heart button
-
-  becomes one of "favorites"
-  changes # favorites on view favorites button
-    this.favorites.length = viewfavoritesbutton#.innerText;
-}
-
-function viewFavoritesButtons () {
-  if clicked, can see all cards with active favorite heart button
-}
 
 // function noGlobVars(string) {
 //   return document.querySelector(string);
