@@ -10,9 +10,6 @@ document.querySelector('.title-input').addEventListener('keyup', disableAddToAlb
 document.querySelector('.caption-input').addEventListener('keyup', disableAddToAlbumBtn);
 document.querySelector('.search-bar-input').addEventListener('keyup', filterSearch);
 
-document.querySelector('.show-more-btn').classList.toggle('more-less-toggle');
-document.querySelector('.show-less-btn').classList.toggle('more-less-toggle');
-
 // On page refresh
 disableAddToAlbumBtn();
 displayPhotos();
@@ -107,13 +104,46 @@ function saveUserInput(element) {
 }
 
 function filterSearch() {
+  debugger
+  console.log('hi');
   var searchBarInput = document.querySelector('.search-bar-input');
   var filterInput = searchBarInput.value.toLowerCase();
   var photoArray = updatePhotoArray();
-  console.log('hi');
+  for (var i = 0; i < photoArray.length; i++) {
+    if (body === -1 && caption === -1) {
+      photoArray[i].setAttribute('style', 'display: none');
+    } else {
+      photoArray[i].setAttribute('style', 'display: block');
+  }
 }
 
+document.querySelector('.show-more-btn').classList.toggle('more-less-toggle');
+document.querySelector('.show-less-btn').classList.toggle('more-less-toggle');
 
+function showMore() {
+  var showMoreBtn = document.querySelector('.show-more-btn');
+  var showLessBtn = document.querySelector('.show-less-btn');
+  if number of cards <= 10 no buttons
+  if number of cards > 10/11+ cards then show more button active
+    if clicked, display all cards
+}
+
+function showLess() {
+  var showMoreBtn = document.querySelector('.show-more-btn');
+  var showLessBtn = document.querySelector('.show-less-btn');
+  if number of cards >= 11+ then can show less button active and show more button is deactivated
+    if show less button is clicked, only 10 cards are displayed
+}
+
+function favoriteHeartButton () {
+  if clicked, active favorite heart button
+  becomes one of "favorites"
+  changes # favorites on view favorites button
+}
+
+function viewFavoritesButtons () {
+  if clicked, can see all cards with active favorite heart button
+}
 
 // function noGlobVars(string) {
 //   return document.querySelector(string);
