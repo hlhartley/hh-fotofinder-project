@@ -138,7 +138,7 @@ label {
   width: 500px;
 }
 
-.choose-file-btn, .view-favorites-btn, .add-to-album-btn, .show-more-btn {
+.choose-file-btn, .view-favorites-btn, .add-to-album-btn, .show-more-btn, .show-less-btn {
   background-color: #5b4447;
   border: none;
   color: #fff;
@@ -156,10 +156,15 @@ label {
   width: 225px;
 }
 
-.show-more-btn {
+.show-more-btn, .show-less-btn {
   border: 2px solid #938284;
-  height: 45px;
   font-size: .8em;
+  height: 45px;
+  width: 100%;
+}
+
+.more-less-toggle {
+  display: none;
 }
 
 /*Card Image Container Styles*/

@@ -9,6 +9,9 @@ document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
 document.querySelector('.caption-input').addEventListener('keyup', disableAddToAlbumBtn);
 
+document.querySelector('.show-more-btn').classList.toggle('more-less-toggle');
+document.querySelector('.show-less-btn').classList.toggle('more-less-toggle');
+
 disableAddToAlbumBtn();
 displayPhotos();
 
