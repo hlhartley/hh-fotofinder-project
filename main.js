@@ -1,6 +1,5 @@
 // var chooseFileBtn = document.querySelector('.choose-file-btn');
 
-
 // Event Listeners
 document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum);
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
@@ -91,10 +90,6 @@ function disableAddToAlbumBtn() {
   }
 }
 
-// function updatePhotoArray() {
-//   return document.getElementsByClassName('card');
-// }
-
 function pressEnterKey() {
   const key = event.keyCode;
   if (key === 13) { 
@@ -104,12 +99,12 @@ function pressEnterKey() {
 }
 
 function saveUserInput(element) {
-  if(element === 'title') {
+  if (element === 'title') {
     var editedElement = 'title';
     var editedID = event.target.dataset.titleid;
     var editedText = event.target.innerText;
   }
-  else if(element === 'caption') {
+  else if (element === 'caption') {
     var editedElement = 'caption';
     var editedID = event.target.dataset.captionid;
     var editedText = event.target.innerText;
@@ -125,11 +120,18 @@ function clearCardContainer() {
 function favoriteHeartButton () {
   Photo.prototype.saveFavoritePhotos();
 }
-  
-function viewFavoritesButtons () {
+ 
+
 var viewFavBtn = document.querySelector('.view-favorites-btn');
-//   if clicked, can see all cards with active favorite heart button
-  
+viewFavBtn.addEventListener('click', viewFavoritesButton);  
+
+function viewFavoritesButton () {
+  clearCardContainer();
+  Photo.prototype.newPhotoArray().forEach(function(photo) {
+    if (photo.favorite === true) {
+      createCardTemplate(photo.id, photo.title, photo.caption);
+    }
+  })
 }
 
 // document.querySelector('.show-more-btn').classList.toggle('more-less-toggle');
