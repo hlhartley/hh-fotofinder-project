@@ -175,6 +175,19 @@ function showMoreLessCards() {
     showMoreBtn.classList.toggle('more-less-toggle');
     showLessBtn.classList.toggle('more-less-toggle');
 }
+
+var viewFavBtn = document.querySelector('.view-favorites-btn');
+viewFavBtn.addEventListener('click', showAllButton);
+function showAllButton() {
+  if (viewFavBtn.innerText === "View # Favorites") {
+    viewFavBtn.innerText = "View All Photos";
+  } else { 
+    viewFavBtn.innerText = "View # Favorites";
+    }
+  }
+
+// view all photos button needs to show all photos again
+
 //   if (Photo.prototype.newPhotoArray().length >= 10) {
 //     showMoreBtn.classList.remove('display-none');
 //     showLessBtn.classList.add('display-none');
