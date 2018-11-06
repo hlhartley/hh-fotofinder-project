@@ -145,24 +145,34 @@ function clearCardContainer() {
   cardsContainer.innerHTML = '';
 }
 
-function favoriteHeartButton (e) {
+function favoriteHeartButton() {
   favoritesCounter++;
   let foundPhoto = Photo.prototype.saveFavoritePhotos();
   if (foundPhoto.favorite) {
-    return "images/favorite-active.svg";
+    event.target.src = "images/favorite-active.svg";
+  } else {
+    event.target.src = "images/favorite.svg";
   }
 }
 
 var viewFavBtn = document.querySelector('.view-favorites-btn');
 viewFavBtn.addEventListener('click', viewFavoritesButton);  
 
-function viewFavoritesButton () {
+function viewFavoritesButton() {
+  debugger
   clearCardContainer();
   Photo.prototype.newPhotoArray().forEach(function(photo) {
     if (photo.favorite === true) {
       createCardTemplate(photo.id, photo.title, photo.caption);
     }
   })
+}
+
+var numberOfFavs = document.querySelector('.num-of-favorites');
+viewFavBtn.addEventListener('click', displayNumberOfFavorites);
+
+function displayNumberOfFavorites() {
+  numberOfFavs.innerText = favoritesCounter;
 }
 
 document.querySelector('.show-more-btn').addEventListener('click', showMoreLessCards);
