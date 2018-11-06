@@ -1,4 +1,3 @@
-// var idCounter = 1;
 var favoritesCounter = 0;
 
 
@@ -16,7 +15,6 @@ class Photo {
   }
 
   saveToStorage() {
-    // idCounter++;
     let newPhotoArray = this.newPhotoArray();
     newPhotoArray.push(this);
     localStorage.setItem('newPhotoArray', JSON.stringify(newPhotoArray));

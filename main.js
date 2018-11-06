@@ -57,8 +57,6 @@ function createCardTemplate(id, title, caption, photoresult) {
   cardsContainer.innerHTML = card + cardsContainer.innerHTML; 
 };
 
-
-
 function displayAllPhotos(){
   Photo.prototype.newPhotoArray().forEach(function(photo) {
     createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
@@ -155,7 +153,7 @@ function viewFavoritesButton() {
   clearCardContainer();
   Photo.prototype.newPhotoArray().forEach(function(photo) {
     if (photo.favorite === true) {
-      createCardTemplate(photo.id, photo.title, photo.caption);
+      createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
     }
   })
 }
@@ -195,9 +193,6 @@ function showMoreLessCards() {
 // function displayOnlyTenCards() {
 //   display id cards 1-10
 // }
-
-
-
 
 // function noGlobVars(string) {
 //   return document.querySelector(string);
