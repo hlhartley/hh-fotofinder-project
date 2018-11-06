@@ -242,18 +242,28 @@ article {
 
 .delete-btn {
   background: url("images/delete.svg");
+  background-repeat: no-repeat;
+  border: none;
 }
 
 .delete-btn:hover {
   background: url("images/delete-active.svg");
+   background-repeat: no-repeat;
 }
 
 .favorite-btn {
   background: url("images/favorite.svg");
+  background-repeat: no-repeat;
 }
+
+/*.favorite-btn:hover {
+  background: url("images/favorite-active.svg");
+  background-repeat: no-repeat;
+}*/
 
 .favorite-active-btn {
   background: url("images/favorite-active.svg");
+  background-repeat: no-repeat;
 }
 
 .upload-photo-message {
@@ -275,9 +285,6 @@ article {
   margin-bottom: 10px;
 }
 
-/*.favorite-btn:hover {
-  background: url("images/favorite-active.svg");
-}*/
 
 @media screen and (max-width: 850px) {
   .nav-bar {

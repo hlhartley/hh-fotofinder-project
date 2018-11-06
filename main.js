@@ -54,15 +54,15 @@ function createCardTemplate(id, title, caption, photoresult) {
       <p onkeydown="pressEnterKey('caption')" onfocusout="saveUserInput('caption')" data-captionID="${id}" class="card-caption-output" contenteditable="true">${caption}
       </p>
       <p class="trash-fav-button-container">
-        <img onclick="deleteCard()" class="delete-btn">
-        <img onclick="favoriteHeartButton()" data-photoID="${id}" class="favorite-btn" src="images/favorite.svg">
+        <img onclick="deleteCard()" class="delete-btn" src="">
+        <img onclick="favoriteHeartButton()" data-photoID="${id}" class="favorite-btn" src="">
       </p>
     </div>
   `;
   cardsContainer.innerHTML = card + cardsContainer.innerHTML; 
 };
 
-function displayAllPhotos(){
+function displayAllPhotos() {
   Photo.prototype.newPhotoArray().forEach(function(photo) {
     createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
   })
