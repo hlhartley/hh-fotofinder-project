@@ -247,6 +247,10 @@ article {
   background: url("images/favorite.svg");
 }
 
+.favorite-active-btn {
+  background: url("images/favorite-active.svg");
+}
+
 .favorite-btn:hover {
   background: url("images/favorite-active.svg");
 }

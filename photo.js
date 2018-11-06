@@ -1,4 +1,6 @@
 // var idCounter = 1;
+var favoritesCounter = 0;
+
 
 class Photo {
   constructor(title, caption, file) {
@@ -47,13 +49,17 @@ class Photo {
 
   saveFavoritePhotos() {
     let photos = this.newPhotoArray();
-    var favoritedPhotoId = event.target.dataset.photoid;
-    let favoritePhoto = photos.find(function(photo) {
-      return photo.id == favoritedPhotoId;
+    const photoId = event.target.dataset.photoid;
+    let foundPhoto = photos.find(function(photo) {
+      return photo.id == photoId;
     })
-    if (favoritePhoto) {
-      favoritePhoto.favorite = true;
-    }
+    if (foundPhoto) {
+      foundPhoto.favorite = !foundPhoto.favorite;
+    } 
     localStorage.setItem('newPhotoArray', JSON.stringify(photos));
+    return foundPhoto;
   }
 }
+
+
+
