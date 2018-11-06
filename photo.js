@@ -12,11 +12,7 @@ class Photo {
   }
 
   newPhotoArray() {
-    if (localStorage.newPhotoArray) {
-      return JSON.parse(localStorage.newPhotoArray);
-    } else {
-      return [];
-    }
+    return JSON.parse(localStorage.getItem('newPhotoArray')) || [];
   }
 
   saveToStorage() {

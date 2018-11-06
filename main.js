@@ -15,27 +15,20 @@ window.onload = appendPhotos;
 
 function addToAlbum(){
   let fileInput = document.querySelector('.file');
-    if (fileInput.files[0]) {
-      reader.readAsDataURL(fileInput.files[0]); 
-      reader.onload = addPhoto;
-    };
-    showMoreLessCards();
+  if (fileInput.files[0]) {
+    reader.readAsDataURL(fileInput.files[0]); 
+    reader.onload = addPhoto;
   };
-
-function addPhoto(e) {
-  const photoGallery = document.querySelector('.file-display-area');
-  const imagesArr = JSON.parse(localStorage.getItem('photos')) || [];
-  const newPhoto = new Photo(Date.now(), e.target.result);
-    photoGallery.innerHTML += `<img src=${e.target.result} />`;
-    imagesArr.push(newPhoto);
-    newPhoto.saveToStorage(imagesArr);
+  showMoreLessCards();
 };
 
+
 function addPhoto(e) {
+  e.preventDefault();
   var titleInput = document.querySelector('.title-input');
   var captionInput = document.querySelector('.caption-input');
-  event.preventDefault();
-  const photo = new Photo(titleInput.value, captionInput.value);   
+  console.log(e.target.result);
+  const photo = new Photo(titleInput.value, captionInput.value, e.target.result);   
   createCardTemplate(photo.id, photo.title, photo.caption, e.target.result);
   photo.saveToStorage();
   clearInputs();
@@ -68,13 +61,13 @@ function createCardTemplate(id, title, caption, photoresult) {
 
 function displayAllPhotos(){
   Photo.prototype.newPhotoArray().forEach(function(photo) {
-    createCardTemplate(photo.id, photo.title, photo.caption);
+    createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
   })
 }
 
 function displayFilteredPhotos(photos) {
   photos.forEach(function(photo) {
-    createCardTemplate(photo.id, photo.title, photo.caption);
+    createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
   }) 
 }
 
@@ -159,7 +152,6 @@ var viewFavBtn = document.querySelector('.view-favorites-btn');
 viewFavBtn.addEventListener('click', viewFavoritesButton);  
 
 function viewFavoritesButton() {
-  debugger
   clearCardContainer();
   Photo.prototype.newPhotoArray().forEach(function(photo) {
     if (photo.favorite === true) {
@@ -168,8 +160,9 @@ function viewFavoritesButton() {
   })
 }
 
+var addToAlbumBtn = document.querySelector('.add-to-album-btn');
 var numberOfFavs = document.querySelector('.num-of-favorites');
-viewFavBtn.addEventListener('click', displayNumberOfFavorites);
+addToAlbumBtn.addEventListener('click', displayNumberOfFavorites);
 
 function displayNumberOfFavorites() {
   numberOfFavs.innerText = favoritesCounter;
