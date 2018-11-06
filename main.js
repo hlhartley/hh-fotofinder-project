@@ -11,6 +11,7 @@ document.querySelector('.view-favorites-btn').addEventListener('click', viewFavo
 // On page refresh
 displayMessage();
 displayAllPhotos();
+// displayTenPhotos();
 disableAddToAlbumBtn();
 showMoreLessCards();
 displayNumberOfFavorites();
@@ -188,6 +189,8 @@ function showMoreLessCards() {
     showLessBtn = document.querySelector('.show-less-btn');
     showMoreBtn.classList.toggle('more-less-toggle');
     showLessBtn.classList.toggle('more-less-toggle');
+    // if showMoreBtn => display all cards
+    // if showLessBtn => displayTenPhotos()
 }
 
 function displayMessage() {
@@ -210,20 +213,10 @@ if (Photo.prototype.newPhotoArray().length == 0) {
   }
 }
 
-
-// view all photos button needs to show all photos again
-
+// function displayTenPhotos() {
 //   if (Photo.prototype.newPhotoArray().length >= 10) {
-//     showMoreBtn.classList.remove('display-none');
-//     showLessBtn.classList.add('display-none');
-//     showMoreBtn.classList.toggle('more-less-toggle');
-//     showLessBtn.classList.toggle('more-less-toggle');
-//     click display more => display all id cards
-//   } else {
-//     showMoreBtn.classList.add('display-none');
-//     showLessBtn.classList.remove('display-none');
-//     showMoreBtn.classList.toggle('more-less-toggle');
-//     showLessBtn.classList.toggle('more-less-toggle');
-//     display show less btn
-//     show less btn => display id cards 1-10
+//     for (var i = 0; i <= 10; i++) {
+//       createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
+//     }
 //   }
+// }
