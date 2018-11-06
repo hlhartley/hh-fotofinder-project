@@ -1,24 +1,24 @@
 var favoritesCounter = 0;
+var reader = new FileReader();
 
 // Event Listeners
-document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum);
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
 document.querySelector('.caption-input').addEventListener('keyup', disableAddToAlbumBtn);
+document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum);
 document.querySelector('.search-bar-input').addEventListener('keyup', filterSearch);
+document.querySelector('.view-favorites-btn').addEventListener('click', viewFavoritesButton);
 
 // On page refresh
-disableAddToAlbumBtn();
 displayAllPhotos();
+disableAddToAlbumBtn();
 showMoreLessCards();
 displayNumberOfFavorites();
-
-
-// Functions
-var reader = new FileReader();
 window.onload = appendPhotos;
 
+// Functions
+
 function addToAlbum(){
-  let fileInput = document.querySelector('.file');
+  const fileInput = document.querySelector('.file');
   if (fileInput.files[0]) {
     reader.readAsDataURL(fileInput.files[0]); 
     reader.onload = addPhoto;
@@ -29,9 +29,8 @@ function addToAlbum(){
 
 function addPhoto(e) {
   e.preventDefault();
-  var titleInput = document.querySelector('.title-input');
-  var captionInput = document.querySelector('.caption-input');
-  console.log(e.target.result);
+  const titleInput = document.querySelector('.title-input');
+  const captionInput = document.querySelector('.caption-input');
   const photo = new Photo(titleInput.value, captionInput.value, e.target.result);   
   createCardTemplate(photo.id, photo.title, photo.caption, e.target.result);
   photo.saveToStorage();
@@ -39,13 +38,13 @@ function addPhoto(e) {
 }
 
 function appendPhotos() {
-  var imagesArr = JSON.parse(localStorage.getItem('photos')) || [];
+  let imagesArr = JSON.parse(localStorage.getItem('photos')) || [];
   imagesArr.forEach(photo => photoGallery.innerHTML += `<img src=${photo.file} />`)
 };
 
 function createCardTemplate(id, title, caption, photoresult) {
-  var cardsContainer = document.querySelector('.cards-container');
-  var card = `<div id=${id} class="card">
+  const cardsContainer = document.querySelector('.cards-container');
+  let card = `<div id=${id} class="card">
       <h2 onkeydown="pressEnterKey('title')" onfocusout="saveUserInput('title')" data-titleID="${id}" class="card-title-output" contenteditable="true">${title}</h2>
       <div class="file-display-area">
         <img src="${photoresult}" class="card-img">
@@ -82,10 +81,9 @@ function displayFavoritedPhotos() {
 }
 
 function filterSearch() {
-  var searchBarInput = document.querySelector('.search-bar-input');
-  var filterInput = searchBarInput.value.toLowerCase();
-
-  var filteredPhotos = Photo.prototype.newPhotoArray().filter(function(photo) {
+  const searchBarInput = document.querySelector('.search-bar-input');
+  const filterInput = searchBarInput.value.toLowerCase();
+  const filteredPhotos = Photo.prototype.newPhotoArray().filter(function(photo) {
     return photo.title.toLowerCase().includes(filterInput) || photo.caption.toLowerCase().includes(filterInput);
   })
   clearCardContainer();
@@ -93,8 +91,8 @@ function filterSearch() {
 }
 
 function clearInputs() {
-  var titleInput = document.querySelector('.title-input');
-  var captionInput = document.querySelector('.caption-input');
+  const titleInput = document.querySelector('.title-input');
+  const captionInput = document.querySelector('.caption-input');
   titleInput.value = '';
   captionInput.value = '';
 }
@@ -110,9 +108,9 @@ function deleteCard() {
 }
 
 function disableAddToAlbumBtn() {
-  var titleInput = document.querySelector('.title-input');
-  var captionInput = document.querySelector('.caption-input');
-  var addToAlbumBtn = document.querySelector('.add-to-album-btn');
+  let titleInput = document.querySelector('.title-input');
+  let captionInput = document.querySelector('.caption-input');
+  let addToAlbumBtn = document.querySelector('.add-to-album-btn');
    
   if (titleInput.value === '' || captionInput.value === '') {
     addToAlbumBtn.disabled = true;
@@ -131,20 +129,20 @@ function pressEnterKey() {
 
 function saveUserInput(element) {
   if (element === 'title') {
-    var editedElement = 'title';
-    var editedID = event.target.dataset.titleid;
-    var editedText = event.target.innerText;
+    let editedElement = 'title';
+    let editedID = event.target.dataset.titleid;
+    let editedText = event.target.innerText;
   }
   else if (element === 'caption') {
-    var editedElement = 'caption';
-    var editedID = event.target.dataset.captionid;
-    var editedText = event.target.innerText;
+    let editedElement = 'caption';
+    let editedID = event.target.dataset.captionid;
+    let editedText = event.target.innerText;
   }
   Photo.prototype.updatePhoto(editedElement, editedID, editedText);
 }
 
 function clearCardContainer() {
-  var cardsContainer = document.querySelector('.cards-container');
+  let cardsContainer = document.querySelector('.cards-container');
   cardsContainer.innerHTML = '';
 }
 
@@ -165,8 +163,7 @@ function displayNumberOfFavorites() {
   numberOfFavs.innerText = `View ${favoritesCounter} Favorites`;
 }
 
-var viewFavBtn = document.querySelector('.view-favorites-btn');
-viewFavBtn.addEventListener('click', viewFavoritesButton);  
+  
 
 function viewFavoritesButton() {
   clearCardContainer();
@@ -174,6 +171,7 @@ function viewFavoritesButton() {
 }
 
 function showAllButton() {
+  let viewFavBtn = document.querySelector('.view-favorites-btn')
   if (viewFavBtn.innerText === "View All Photos") {
     displayAllPhotos();
     viewFavBtn.innerText = `View ${favoritesCounter} Favorites`;
@@ -187,8 +185,8 @@ document.querySelector('.show-more-btn').addEventListener('click', showMoreLessC
 document.querySelector('.show-less-btn').addEventListener('click', showMoreLessCards);
 
 function showMoreLessCards() {
-  var showMoreBtn = document.querySelector('.show-more-btn');
-  var showLessBtn = document.querySelector('.show-less-btn');
+  const showMoreBtn = document.querySelector('.show-more-btn');
+  const showLessBtn = document.querySelector('.show-less-btn');
     showMoreBtn.classList.toggle('more-less-toggle');
     showLessBtn.classList.toggle('more-less-toggle');
 }
@@ -209,19 +207,3 @@ function showMoreLessCards() {
 //     display show less btn
 //     show less btn => display id cards 1-10
 //   }
-
-// function displayOnlyTenCards() {
-//   display id cards 1-10
-// }
-
-// function noGlobVars(string) {
-//   return document.querySelector(string);
-// };
-
-// var hello = noGlobVars('.guy');
-// var  hello = document.querySelector('.guy');
-
-// function hi () {
-// var navBar = noGlobVars('.nav-bar');
-// navBar.remove()
-// }
