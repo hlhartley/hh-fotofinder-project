@@ -154,8 +154,6 @@ label {
   opacity: .9; 
 }
 
-  
-
 .choose-file-label, .view-favorites-btn, .add-to-album-btn, .show-more-btn, .show-less-btn {
   background-color: #5b4447;
   border: none;
@@ -163,6 +161,11 @@ label {
   font-size: .8em;
   font-weight: 400;
   height: 41px;
+}
+
+.show-buttons-container {
+  display: fixed;
+  bottom: 0;
 }
 
 #file {
@@ -251,6 +254,25 @@ article {
 
 .favorite-active-btn {
   background: url("images/favorite-active.svg");
+}
+
+.upload-photo-message {
+  color: #5b4447;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  font-size: 1.3em;
+  font-weight: 500;
+  letter-spacing: .8px;
+  padding: 77px;
+  text-align: center;
+  width: 100%;
+}
+
+.fa-cloud-upload-alt {
+  color: #e26d5a;
+  font-size: 1.7em;
+  margin-bottom: 10px;
 }
 
 /*.favorite-btn:hover {

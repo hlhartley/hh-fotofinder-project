@@ -9,6 +9,7 @@ document.querySelector('.search-bar-input').addEventListener('keyup', filterSear
 document.querySelector('.view-favorites-btn').addEventListener('click', viewFavoritesButton);
 
 // On page refresh
+displayMessage();
 displayAllPhotos();
 disableAddToAlbumBtn();
 showMoreLessCards();
@@ -163,8 +164,6 @@ function displayNumberOfFavorites() {
   numberOfFavs.innerText = `View ${favoritesCounter} Favorites`;
 }
 
-  
-
 function viewFavoritesButton() {
   clearCardContainer();
   showAllButton();
@@ -186,10 +185,22 @@ document.querySelector('.show-less-btn').addEventListener('click', showMoreLessC
 
 function showMoreLessCards() {
   const showMoreBtn = document.querySelector('.show-more-btn');
-  const showLessBtn = document.querySelector('.show-less-btn');
+    showLessBtn = document.querySelector('.show-less-btn');
     showMoreBtn.classList.toggle('more-less-toggle');
     showLessBtn.classList.toggle('more-less-toggle');
 }
+
+function displayMessage() {
+  debugger
+  let cardsContainer = document.querySelector('.cards-container');
+  let uploadPhotoMessage = document.querySelector('.upload-photo-message');
+  if (cardsContainer.innerText == '') {
+    uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
+  } if (cardsContainer.innerText != '') {
+    uploadPhotoMessage.innerText = '';
+  }
+}
+
 
 // view all photos button needs to show all photos again
 
