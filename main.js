@@ -191,13 +191,22 @@ function showMoreLessCards() {
 }
 
 function displayMessage() {
-  debugger
   let cardsContainer = document.querySelector('.cards-container');
   let uploadPhotoMessage = document.querySelector('.upload-photo-message');
-  if (cardsContainer.innerText == '') {
-    uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
-  } if (cardsContainer.innerText != '') {
-    uploadPhotoMessage.innerText = '';
+  // if (cardsContainer.innerHTML == '') {
+  //   uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
+  // } 
+//   if (cardsContainer.innertext) {
+//     uploadPhotoMessage.innerText = '';
+//   } else {
+//     uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
+//   }
+// }
+
+if (Photo.prototype.newPhotoArray().length == 0) {
+  uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
+} else if (Photo.prototype.newPhotoArray().length >= 1) {
+   uploadPhotoMessage.innerText = '';
   }
 }
 
