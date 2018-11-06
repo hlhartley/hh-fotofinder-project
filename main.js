@@ -1,3 +1,5 @@
+var favoritesCounter = 0;
+
 // Event Listeners
 document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum);
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
@@ -8,6 +10,8 @@ document.querySelector('.search-bar-input').addEventListener('keyup', filterSear
 disableAddToAlbumBtn();
 displayAllPhotos();
 showMoreLessCards();
+displayNumberOfFavorites();
+
 
 // Functions
 var reader = new FileReader();
@@ -67,6 +71,14 @@ function displayFilteredPhotos(photos) {
   photos.forEach(function(photo) {
     createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
   }) 
+}
+
+function displayFavoritedPhotos() {
+  Photo.prototype.newPhotoArray().forEach(function(photo) {
+    if (photo.favorite === true) {
+      createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
+    }
+  })
 }
 
 function filterSearch() {
@@ -137,13 +149,20 @@ function clearCardContainer() {
 }
 
 function favoriteHeartButton() {
-  favoritesCounter++;
   let foundPhoto = Photo.prototype.saveFavoritePhotos();
   if (foundPhoto.favorite) {
+    favoritesCounter++;
     event.target.src = "images/favorite-active.svg";
   } else {
+    favoritesCounter--;
     event.target.src = "images/favorite.svg";
   }
+  displayNumberOfFavorites();
+}
+
+function displayNumberOfFavorites() {
+  let numberOfFavs = document.querySelector('.view-favorites-btn');
+  numberOfFavs.innerText = `View ${favoritesCounter} Favorites`;
 }
 
 var viewFavBtn = document.querySelector('.view-favorites-btn');
@@ -151,19 +170,17 @@ viewFavBtn.addEventListener('click', viewFavoritesButton);
 
 function viewFavoritesButton() {
   clearCardContainer();
-  Photo.prototype.newPhotoArray().forEach(function(photo) {
-    if (photo.favorite === true) {
-      createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
-    }
-  })
+  showAllButton();
 }
 
-var addToAlbumBtn = document.querySelector('.add-to-album-btn');
-var numberOfFavs = document.querySelector('.num-of-favorites');
-addToAlbumBtn.addEventListener('click', displayNumberOfFavorites);
-
-function displayNumberOfFavorites() {
-  numberOfFavs.innerText = favoritesCounter;
+function showAllButton() {
+  if (viewFavBtn.innerText === "View All Photos") {
+    displayAllPhotos();
+    viewFavBtn.innerText = `View ${favoritesCounter} Favorites`;
+  } else {
+    displayFavoritedPhotos();
+    viewFavBtn.innerText = "View All Photos";
+  }
 }
 
 document.querySelector('.show-more-btn').addEventListener('click', showMoreLessCards);
@@ -175,16 +192,6 @@ function showMoreLessCards() {
     showMoreBtn.classList.toggle('more-less-toggle');
     showLessBtn.classList.toggle('more-less-toggle');
 }
-
-var viewFavBtn = document.querySelector('.view-favorites-btn');
-viewFavBtn.addEventListener('click', showAllButton);
-function showAllButton() {
-  if (viewFavBtn.innerText === "View # Favorites") {
-    viewFavBtn.innerText = "View All Photos";
-  } else { 
-    viewFavBtn.innerText = "View # Favorites";
-    }
-  }
 
 // view all photos button needs to show all photos again
 

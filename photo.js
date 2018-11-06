@@ -1,6 +1,3 @@
-var favoritesCounter = 0;
-
-
 class Photo {
   constructor(title, caption, file) {
     this.id = Math.floor(Date.now() / 1000);
