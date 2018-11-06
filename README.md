@@ -30,4 +30,4 @@ Name: Heather Hartley
 ![Screenshot](hh-fotofinder-desktop-img.png)
 
 ### On Mobile
-![Screenshot]()
+![Screenshot](hh-fotofinder-mobile-img.png)
