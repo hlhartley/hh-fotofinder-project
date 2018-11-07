@@ -28,7 +28,7 @@ function addPhoto(e) {
   const titleInput = document.querySelector('.title-input');
   const captionInput = document.querySelector('.caption-input');
   const photo = new Photo(titleInput.value, captionInput.value, e.target.result);   
-  createCardTemplate(photo.id, photo.title, photo.caption, e.target.result);
+  createCardTemplate(photo.id, photo.title, photo.caption, e.target.result, photo.favorite);
   photo.saveToStorage();
   clearInputs();
   displayMessage();
@@ -39,8 +39,16 @@ function appendPhotos() {
   imagesArr.forEach(photo => photoGallery.innerHTML += `<img src=${photo.file} />`)
 };
 
-function createCardTemplate(id, title, caption, photoresult) {
+
+
+function createCardTemplate(id, title, caption, photoresult, favorite) {
   const cardsContainer = document.querySelector('.cards-container');
+  let favoriteBtnImg;
+  if (favorite) {
+    favoriteBtnImg = "images/favorite-active.svg";
+  } else {
+    favoriteBtnImg = "images/favorite.svg";
+  }
   let card = `<div id=${id} class="card">
       <h2 onkeydown="pressEnterKey('title')" onfocusout="saveUserInput('title')" data-titleID="${id}" class="card-title-output" contenteditable="true">${title}</h2>
       <div class="file-display-area">
@@ -50,7 +58,7 @@ function createCardTemplate(id, title, caption, photoresult) {
       </p>
       <p class="trash-fav-button-container">
         <img onclick="deleteCard()" class="delete-btn" src="">
-        <img onclick="favoriteHeartButton()" data-photoID="${id}" class="favorite-btn" src="">
+        <img onclick="favoriteHeartButton()" data-photoID="${id}" class="favorite-btn" src="${favoriteBtnImg}">
       </p>
     </div>
   `;
@@ -64,20 +72,20 @@ function createCardTemplate(id, title, caption, photoresult) {
 // }
 
 function displayAllPhotos() {
-  Photo.prototype.newPhotoArray().forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file));
+  Photo.prototype.newPhotoArray().forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file, photo.favorite));
 }
 
 function displayFilteredPhotos(photos) {
-  photos.forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file));
+  photos.forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file, photo.favorite));
 }
 
 function displayFavoritedPhotos() {
-  Photo.prototype.favoritePhotos().forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file));
+  Photo.prototype.favoritePhotos().forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file, photo.favorite));
 }
 
 function displayTenPhotos() {
   let photoArray = Photo.prototype.newPhotoArray().slice(0, 10);
-  photoArray.forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file));
+  photoArray.forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file, photo.favorite));
 }
 
 function displayMessage() {
