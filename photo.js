@@ -31,7 +31,7 @@ class Photo {
 
   updatePhoto(editedElement, editedID, editedText) {
     let photos = this.newPhotoArray();
-    let targetPhoto = photos.find(targetPhoto => targetPhoto.id == editedID);
+    let targetPhoto = photos.find(photo => photo.id == editedID);
     if (editedElement === 'title') {
       targetPhoto.title = editedText;
     } else if (editedElement === 'caption') {

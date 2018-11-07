@@ -12,9 +12,8 @@ displayTenPhotos();
 displayMessage();
 disableAddToAlbumBtn();
 displayNumberOfFavorites();
-window.onload = appendPhotos;
 
-function addToAlbum(){
+function addToAlbum() {
   const fileInput = document.querySelector('.file');
 
   if (fileInput.files[0]) {
@@ -33,11 +32,6 @@ function addPhoto(e) {
   clearInputs();
   displayMessage();
 }
-
-function appendPhotos() {
-  let imagesArr = JSON.parse(localStorage.getItem('photos')) || [];
-  imagesArr.forEach(photo => photoGallery.innerHTML += `<img src=${photo.file} />`)
-};
 
 function createCardTemplate(id, title, caption, photoresult, favorite) {
   const cardsContainer = document.querySelector('.cards-container');
@@ -123,12 +117,12 @@ function disableAddToAlbumBtn() {
 }
 
 
-function pressEnterKey() {
+function pressEnterKey(element) {
   const key = event.keyCode;
 
   if (key === 13) { 
     event.preventDefault();
-    saveUserInput();
+    saveUserInput(element);
   }
 }
 
