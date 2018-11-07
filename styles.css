@@ -199,16 +199,11 @@ button:hover {
 
 .delete-btn:hover {
   background: url("images/delete-active.svg");
-   background-repeat: no-repeat;
+  background-repeat: no-repeat;
 }
 
 .favorite-btn {
   background: url("images/favorite.svg");
-  background-repeat: no-repeat;
-}
-
-.favorite-active-btn {
-  background: url("images/favorite-active.svg");
   background-repeat: no-repeat;
 }
 

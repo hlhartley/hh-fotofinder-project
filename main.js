@@ -41,12 +41,9 @@ function appendPhotos() {
 
 function createCardTemplate(id, title, caption, photoresult, favorite) {
   const cardsContainer = document.querySelector('.cards-container');
-  let favoriteBtnImg;
-  if (favorite) {
-    favoriteBtnImg = "images/favorite-active.svg";
-  } else {
-    favoriteBtnImg = "images/favorite.svg";
-  }
+  const activeFavBtn = "images/favorite-active.svg";
+  const inactiveFavBtn = "images/favorite.svg";
+
   let card = `<div id=${id} class="card">
       <h2 onkeydown="pressEnterKey('title')" onfocusout="saveUserInput('title')" data-titleID="${id}" class="card-title-output" contenteditable="true">${title}</h2>
       <div class="file-display-area">
@@ -56,7 +53,7 @@ function createCardTemplate(id, title, caption, photoresult, favorite) {
       </p>
       <p class="trash-fav-button-container">
         <img onclick="deleteCard()" class="delete-btn" src="">
-        <img onclick="favoriteHeartButton()" data-photoID="${id}" class="favorite-btn" src="${favoriteBtnImg}">
+        <img onclick="favoriteHeartButton()" data-photoID="${id}" class="favorite-btn" src="${favorite ? activeFavBtn : inactiveFavBtn}">
       </p>
     </div>
   `;
