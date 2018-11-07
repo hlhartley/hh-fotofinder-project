@@ -11,6 +11,10 @@ class Photo {
     return JSON.parse(localStorage.getItem('newPhotoArray')) || [];
   }
 
+  favoritePhotos() {
+    return this.newPhotoArray().filter(photo => photo.favorite);
+  }
+
   saveToStorage() {
     let newPhotoArray = this.newPhotoArray();
 
@@ -48,5 +52,6 @@ class Photo {
     localStorage.setItem('newPhotoArray', JSON.stringify(photos));
     return foundPhoto;
   }
+
 }
 

@@ -1,4 +1,3 @@
-var favoritesCounter = 0;
 var reader = new FileReader();
 
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
@@ -73,11 +72,7 @@ function displayFilteredPhotos(photos) {
 }
 
 function displayFavoritedPhotos() {
-  Photo.prototype.newPhotoArray().forEach(photo => {
-    if (photo.favorite) {
-      createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
-    }
-  })
+  Photo.prototype.favoritePhotos().forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file));
 }
 
 function displayTenPhotos() {
@@ -154,24 +149,23 @@ function saveUserInput(element) {
 }
 
 function clearCardContainer() {
-  document.querySelector('.cards-container').cardsContainer.innerHTML = '';
+  document.querySelector('.cards-container').innerHTML = '';
 }
 
 function favoriteHeartButton() {
   let foundPhoto = Photo.prototype.saveFavoritePhotos();
 
   if (foundPhoto.favorite) {
-    favoritesCounter++;
     event.target.src = "images/favorite-active.svg";
   } else {
-    favoritesCounter--;
     event.target.src = "images/favorite.svg";
   }
   displayNumberOfFavorites();
 }
 
 function displayNumberOfFavorites() {
-  document.querySelector('.view-favorites-btn').numberOfFavs.innerText = `View ${favoritesCounter} Favorites`;
+  const numberFavorites = Photo.prototype.favoritePhotos().length;
+  document.querySelector('.view-favorites-btn').innerText = `View ${numberFavorites} Favorites`;
 }
 
 function viewFavoritesButton() {
@@ -180,11 +174,12 @@ function viewFavoritesButton() {
 }
 
 function showAllButton() {
+  const numberFavorites = Photo.prototype.favoritePhotos().length;
   let viewFavBtn = document.querySelector('.view-favorites-btn')
 
   if (viewFavBtn.innerText === "View All Photos") {
     displayAllPhotos();
-    viewFavBtn.innerText = `View ${favoritesCounter} Favorites`;
+    viewFavBtn.innerText = `View ${numberFavorites} Favorites`;
   } else {
     displayFavoritedPhotos();
     viewFavBtn.innerText = "View All Photos";
