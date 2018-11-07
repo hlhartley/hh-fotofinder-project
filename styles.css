@@ -134,17 +134,17 @@ button:hover {
   width: 500px;
 }
 
-.show-buttons-container {
-  display: fixed;
-  bottom: 0;
-}
-
 .trash-fav-button-container {
   background-color: #5b4447;
   display: flex;
   justify-content: space-between;
   height: 45px;
   padding: 10px;
+}
+
+.show-buttons-container {
+  display: fixed;
+  bottom: 0;
 }
 
 .add-to-album-btn:disabled {
@@ -186,23 +186,6 @@ button:hover {
   width: 225px;
 }
 
-.show-more-btn, .show-less-btn {
-  cursor: pointer;
-  font-size: 10px;
-  height: 45px;
-  margin: auto;
-  padding: 10px;
-  width: 100%;
-}
-
-.more-less-toggle {
-  display: none;
-}
-
-.display-none {
-  display: none;
-}
-
 .delete-btn, .favorite-btn {
   cursor: pointer;
   width: 25px;
@@ -227,6 +210,23 @@ button:hover {
 .favorite-active-btn {
   background: url("images/favorite-active.svg");
   background-repeat: no-repeat;
+}
+
+.show-more-btn, .show-less-btn {
+  cursor: pointer;
+  font-size: 10px;
+  height: 45px;
+  margin: auto;
+  padding: 10px;
+  width: 100%;
+}
+
+.more-less-toggle {
+  display: none;
+}
+
+.display-none {
+  display: none;
 }
 
 /*Card Image Container Styles*/
@@ -280,8 +280,8 @@ article {
   text-align: center;
   width: 100%;
 }
-/*
-Media Queries*/
+
+/*Media Queries*/
 @media screen and (max-width: 850px) {
   .nav-bar {
     align-items: center;
