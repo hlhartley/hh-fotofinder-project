@@ -66,20 +66,16 @@ function createCardTemplate(id, title, caption, photoresult) {
 // }
 
 function displayAllPhotos() {
-  Photo.prototype.newPhotoArray().forEach(function(photo) {
-    createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
-  })
+  Photo.prototype.newPhotoArray().forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file));
 }
 
 function displayFilteredPhotos(photos) {
-  photos.forEach(function(photo) {
-    createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
-  }) 
+  photos.forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file));
 }
 
 function displayFavoritedPhotos() {
-  Photo.prototype.newPhotoArray().forEach(function(photo) {
-    if (photo.favorite === true) {
+  Photo.prototype.newPhotoArray().forEach(photo => {
+    if (photo.favorite) {
       createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
     }
   })
@@ -88,9 +84,7 @@ function displayFavoritedPhotos() {
 function displayTenPhotos() {
   let photoArray = Photo.prototype.newPhotoArray().slice(0, 10);
   
-  photoArray.forEach(function(photo) {
-    createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
-  })
+  photoArray.forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file));
 }
 
 function displayMessage() {
@@ -104,20 +98,15 @@ function displayMessage() {
   }
 }
 
-// Photo.prototype.newPhotoArray().length ? uploadPhotoMessage.innerText = '' : uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
-
 function filterSearch() {
   const searchBarInput = document.querySelector('.search-bar-input');
   const filterInput = searchBarInput.value.toLowerCase();
-  const filteredPhotos = Photo.prototype.newPhotoArray().filter(function(photo) {
+  const filteredPhotos = Photo.prototype.newPhotoArray().filter(photo => {
     return photo.title.toLowerCase().includes(filterInput) || photo.caption.toLowerCase().includes(filterInput);
   })
   clearCardContainer();
   displayFilteredPhotos(filteredPhotos);
 }
-
-// const filteredPhotos = Photo.prototype.newPhotoArray().filter(photo => photo.title.toLowerCase().includes(filterInput) || photo.caption.toLowerCase().includes(filterInput));
-
 
 function clearInputs() {
   const titleInput = document.querySelector('.title-input');
@@ -129,8 +118,8 @@ function clearInputs() {
 
 function deleteCard() {
   if (event.target.classList.contains('delete-btn')) {
-   event.target.closest('div').remove();
-   const cardToDeleteId = event.target.closest('div').id;
+    event.target.closest('div').remove();
+    var cardToDeleteId = event.target.closest('div').id;
   }
   Photo.prototype.deleteFromStorage(cardToDeleteId);
   clearCardContainer();
@@ -143,14 +132,9 @@ function disableAddToAlbumBtn() {
   let captionInput = document.querySelector('.caption-input');
   let addToAlbumBtn = document.querySelector('.add-to-album-btn');
    
-  if (titleInput.value === '' || captionInput.value === '') {
-    addToAlbumBtn.disabled = true;
-  } else {
-    addToAlbumBtn.disabled = false;
-  }
+  titleInput.value === '' || captionInput.value === '' ? addToAlbumBtn.disabled = true : addToAlbumBtn.disabled = false;
 }
 
-// titleInput.value === '' || captionInput.value === '' ? addToAlbumBtn.disabled = true : addToAlbumBtn.disabled = false;
 
 function pressEnterKey() {
   const key = event.keyCode;
@@ -162,15 +146,14 @@ function pressEnterKey() {
 }
 
 function saveUserInput(element) {
+  var editedText = event.target.innerText;
   if (element === 'title') {
-    let editedElement = 'title';
-    let editedID = event.target.dataset.titleid;
-    let editedText = event.target.innerText;
+    var editedElement = 'title';
+    var editedID = event.target.dataset.titleid;
   }
   else if (element === 'caption') {
-    let editedElement = 'caption';
-    let editedID = event.target.dataset.captionid;
-    let editedText = event.target.innerText;
+    var editedElement = 'caption';
+    var editedID = event.target.dataset.captionid;
   }
   Photo.prototype.updatePhoto(editedElement, editedID, editedText);
 }

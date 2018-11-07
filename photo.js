@@ -13,25 +13,22 @@ class Photo {
 
   saveToStorage() {
     let newPhotoArray = this.newPhotoArray();
+
     newPhotoArray.push(this);
     localStorage.setItem('newPhotoArray', JSON.stringify(newPhotoArray));
   }
 
   deleteFromStorage(cardToDeleteId) {
     let photos = this.newPhotoArray();
-    let keepPhotos = photos.filter(function(photo) {
-      return photo.id != cardToDeleteId;
-    })
-     localStorage.setItem('newPhotoArray', JSON.stringify(keepPhotos));
+    let keepPhotos = photos.filter(photo => photo.id != cardToDeleteId);
+
+    localStorage.setItem('newPhotoArray', JSON.stringify(keepPhotos));
   }
 
-  // let keepPhotos = photos.filter(photo => photo.id != cardToDeleteId);
 
   updatePhoto(editedElement, editedID, editedText) {
     let photos = this.newPhotoArray();
-    let targetPhoto = photos.find(function(targetPhoto) {
-      return targetPhoto.id == editedID;
-    })
+    let targetPhoto = photos.find(targetPhoto => targetPhoto.id == editedID);
     if (editedElement === 'title') {
       targetPhoto.title = editedText;
     } else if (editedElement === 'caption') {
@@ -43,9 +40,8 @@ class Photo {
   saveFavoritePhotos() {
     let photos = this.newPhotoArray();
     const photoId = event.target.dataset.photoid;
-    let foundPhoto = photos.find(function(photo) {
-      return photo.id == photoId;
-    })
+    let foundPhoto = photos.find(photo => photo.id == photoId);
+  
     if (foundPhoto) {
       foundPhoto.favorite = !foundPhoto.favorite;
     } 
@@ -54,4 +50,3 @@ class Photo {
   }
 }
 
-// let foundPhoto = photos.find(photo => photo.id == photoId);
