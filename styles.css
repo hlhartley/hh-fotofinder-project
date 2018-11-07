@@ -143,8 +143,9 @@ button:hover {
 }
 
 .show-buttons-container {
-  display: fixed;
-  bottom: 0;
+  margin: auto;
+  padding-bottom: 35px;
+  width: 40%;
 }
 
 .add-to-album-btn:disabled {
