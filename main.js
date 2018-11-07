@@ -9,8 +9,9 @@ document.querySelector('.search-bar-input').addEventListener('keyup', filterSear
 document.querySelector('.view-favorites-btn').addEventListener('click', viewFavoritesButton);
 
 // On page refresh
+// displayAllPhotos();
+displayTenPhotos();
 displayMessage();
-displayAllPhotos();
 // displayTenPhotos();
 disableAddToAlbumBtn();
 showMoreLessCards();
@@ -37,6 +38,7 @@ function addPhoto(e) {
   createCardTemplate(photo.id, photo.title, photo.caption, e.target.result);
   photo.saveToStorage();
   clearInputs();
+  displayMessage();
 }
 
 function appendPhotos() {
@@ -61,6 +63,12 @@ function createCardTemplate(id, title, caption, photoresult) {
   `;
   cardsContainer.innerHTML = card + cardsContainer.innerHTML; 
 };
+
+// function displayGroupOfPhotos(subsetOfPhotos) {
+//   subsetOfPhotos.forEach(function(photo) {
+//     createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
+//   })
+// }
 
 function displayAllPhotos() {
   Photo.prototype.newPhotoArray().forEach(function(photo) {
@@ -107,6 +115,7 @@ function deleteCard() {
   Photo.prototype.deleteFromStorage(cardToDeleteId);
   clearCardContainer();
   displayAllPhotos();
+  displayMessage();
 }
 
 function disableAddToAlbumBtn() {
@@ -196,27 +205,22 @@ function showMoreLessCards() {
 function displayMessage() {
   let cardsContainer = document.querySelector('.cards-container');
   let uploadPhotoMessage = document.querySelector('.upload-photo-message');
-  // if (cardsContainer.innerHTML == '') {
-  //   uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
-  // } 
-//   if (cardsContainer.innertext) {
-//     uploadPhotoMessage.innerText = '';
-//   } else {
-//     uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
-//   }
-// }
 
-if (Photo.prototype.newPhotoArray().length == 0) {
-  uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
-} else if (Photo.prototype.newPhotoArray().length >= 1) {
-   uploadPhotoMessage.innerText = '';
+  if (Photo.prototype.newPhotoArray().length) {
+    uploadPhotoMessage.innerText = '';
+  } else {
+    uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
   }
+  // if (cardsContainer.innerText) {
+  //   uploadPhotoMessage.innerText = '';
+  // } else {
+  //   uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
+  // }
 }
 
-// function displayTenPhotos() {
-//   if (Photo.prototype.newPhotoArray().length >= 10) {
-//     for (var i = 0; i <= 10; i++) {
-//       createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
-//     }
-//   }
-// }
+function displayTenPhotos() {
+  var photoArray = Photo.prototype.newPhotoArray().slice(0, 10);
+  photoArray.forEach(function(photo) {
+    createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
+  })
+}
