@@ -1,6 +1,9 @@
 # Foto Finder Project
 Name: Heather Hartley
 
+## Link to Site
+- https://hlhartley.github.io/hh-fotofinder-project/
+
 ## Overview / Overall Project Objectives
 - Building a responsive photo album app/website
 - Using semantic HTML tags in order to make the site organized and easily accessible for screen readers
