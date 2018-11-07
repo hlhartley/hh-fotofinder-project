@@ -27,7 +27,7 @@ Name: Heather Hartley
 
 ## My project images
 ### On Desktop
-![Screenshot]()
+![Screenshot](hh-fotofinder-desktop-img.png)
 
 ### On Mobile
-![Screenshot]()
+![Screenshot](hh-fotofinder-mobile-img.png)
