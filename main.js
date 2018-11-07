@@ -1,34 +1,28 @@
 var favoritesCounter = 0;
 var reader = new FileReader();
 
-// Event Listeners
 document.querySelector('.title-input').addEventListener('keyup', disableAddToAlbumBtn);
 document.querySelector('.caption-input').addEventListener('keyup', disableAddToAlbumBtn);
 document.querySelector('.add-to-album-btn').addEventListener('click', addToAlbum);
 document.querySelector('.search-bar-input').addEventListener('keyup', filterSearch);
 document.querySelector('.view-favorites-btn').addEventListener('click', viewFavoritesButton);
+document.querySelector('.show-more-btn').addEventListener('click', showMoreButton);
+document.querySelector('.show-less-btn').addEventListener('click', showLessButton);
 
-// On page refresh
-// displayAllPhotos();
 displayTenPhotos();
 displayMessage();
-// displayTenPhotos();
 disableAddToAlbumBtn();
-// showMoreLessCards();
 displayNumberOfFavorites();
 window.onload = appendPhotos;
 
-// Functions
-
 function addToAlbum(){
   const fileInput = document.querySelector('.file');
+
   if (fileInput.files[0]) {
     reader.readAsDataURL(fileInput.files[0]); 
     reader.onload = addPhoto;
   };
-  // showMoreLessCards();
 };
-
 
 function addPhoto(e) {
   e.preventDefault();
@@ -43,6 +37,7 @@ function addPhoto(e) {
 
 function appendPhotos() {
   let imagesArr = JSON.parse(localStorage.getItem('photos')) || [];
+
   imagesArr.forEach(photo => photoGallery.innerHTML += `<img src=${photo.file} />`)
 };
 
@@ -103,6 +98,7 @@ function filterSearch() {
 function clearInputs() {
   const titleInput = document.querySelector('.title-input');
   const captionInput = document.querySelector('.caption-input');
+
   titleInput.value = '';
   captionInput.value = '';
 }
@@ -110,7 +106,7 @@ function clearInputs() {
 function deleteCard() {
   if (event.target.classList.contains('delete-btn')) {
    event.target.closest('div').remove();
-   var cardToDeleteId = event.target.closest('div').id;
+   const cardToDeleteId = event.target.closest('div').id;
   }
   Photo.prototype.deleteFromStorage(cardToDeleteId);
   clearCardContainer();
@@ -132,6 +128,7 @@ function disableAddToAlbumBtn() {
 
 function pressEnterKey() {
   const key = event.keyCode;
+
   if (key === 13) { 
     event.preventDefault();
     saveUserInput();
@@ -154,11 +151,13 @@ function saveUserInput(element) {
 
 function clearCardContainer() {
   let cardsContainer = document.querySelector('.cards-container');
+
   cardsContainer.innerHTML = '';
 }
 
 function favoriteHeartButton() {
   let foundPhoto = Photo.prototype.saveFavoritePhotos();
+
   if (foundPhoto.favorite) {
     favoritesCounter++;
     event.target.src = "images/favorite-active.svg";
@@ -171,6 +170,7 @@ function favoriteHeartButton() {
 
 function displayNumberOfFavorites() {
   let numberOfFavs = document.querySelector('.view-favorites-btn');
+
   numberOfFavs.innerText = `View ${favoritesCounter} Favorites`;
 }
 
@@ -181,6 +181,7 @@ function viewFavoritesButton() {
 
 function showAllButton() {
   let viewFavBtn = document.querySelector('.view-favorites-btn')
+
   if (viewFavBtn.innerText === "View All Photos") {
     displayAllPhotos();
     viewFavBtn.innerText = `View ${favoritesCounter} Favorites`;
@@ -190,12 +191,10 @@ function showAllButton() {
   }
 }
 
-document.querySelector('.show-more-btn').addEventListener('click', showMoreButton);
-document.querySelector('.show-less-btn').addEventListener('click', showLessButton);
-
 function showMoreButton() {
   const showMoreBtn = document.querySelector('.show-more-btn');
   const showLessBtn = document.querySelector('.show-less-btn');
+
   showMoreBtn.classList.toggle('more-less-toggle');
   showLessBtn.classList.toggle('more-less-toggle');
   clearCardContainer();
@@ -205,13 +204,12 @@ function showMoreButton() {
 function showLessButton() {
   const showMoreBtn = document.querySelector('.show-more-btn');
   const showLessBtn = document.querySelector('.show-less-btn');
+
   showMoreBtn.classList.toggle('more-less-toggle');
   showLessBtn.classList.toggle('more-less-toggle');
   clearCardContainer();
   displayTenPhotos();
 }
-
-
 
 function displayMessage() {
   let cardsContainer = document.querySelector('.cards-container');
@@ -222,15 +220,11 @@ function displayMessage() {
   } else {
     uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
   }
-  // if (cardsContainer.innerText) {
-  //   uploadPhotoMessage.innerText = '';
-  // } else {
-  //   uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
-  // }
 }
 
 function displayTenPhotos() {
   let photoArray = Photo.prototype.newPhotoArray().slice(0, 10);
+  
   photoArray.forEach(function(photo) {
     createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
   })
