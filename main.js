@@ -14,7 +14,7 @@ displayTenPhotos();
 displayMessage();
 // displayTenPhotos();
 disableAddToAlbumBtn();
-showMoreLessCards();
+// showMoreLessCards();
 displayNumberOfFavorites();
 window.onload = appendPhotos;
 
@@ -26,7 +26,7 @@ function addToAlbum(){
     reader.readAsDataURL(fileInput.files[0]); 
     reader.onload = addPhoto;
   };
-  showMoreLessCards();
+  // showMoreLessCards();
 };
 
 
@@ -190,17 +190,28 @@ function showAllButton() {
   }
 }
 
-document.querySelector('.show-more-btn').addEventListener('click', showMoreLessCards);
-document.querySelector('.show-less-btn').addEventListener('click', showMoreLessCards);
+document.querySelector('.show-more-btn').addEventListener('click', showMoreButton);
+document.querySelector('.show-less-btn').addEventListener('click', showLessButton);
 
-function showMoreLessCards() {
+function showMoreButton() {
   const showMoreBtn = document.querySelector('.show-more-btn');
-    showLessBtn = document.querySelector('.show-less-btn');
-    showMoreBtn.classList.toggle('more-less-toggle');
-    showLessBtn.classList.toggle('more-less-toggle');
-    // if showMoreBtn => display all cards
-    // if showLessBtn => displayTenPhotos()
+  const showLessBtn = document.querySelector('.show-less-btn');
+  showMoreBtn.classList.toggle('more-less-toggle');
+  showLessBtn.classList.toggle('more-less-toggle');
+  clearCardContainer();
+  displayAllPhotos();
 }
+
+function showLessButton() {
+  const showMoreBtn = document.querySelector('.show-more-btn');
+  const showLessBtn = document.querySelector('.show-less-btn');
+  showMoreBtn.classList.toggle('more-less-toggle');
+  showLessBtn.classList.toggle('more-less-toggle');
+  clearCardContainer();
+  displayTenPhotos();
+}
+
+
 
 function displayMessage() {
   let cardsContainer = document.querySelector('.cards-container');
@@ -219,7 +230,7 @@ function displayMessage() {
 }
 
 function displayTenPhotos() {
-  var photoArray = Photo.prototype.newPhotoArray().slice(0, 10);
+  let photoArray = Photo.prototype.newPhotoArray().slice(0, 10);
   photoArray.forEach(function(photo) {
     createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
   })
