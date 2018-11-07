@@ -85,6 +85,27 @@ function displayFavoritedPhotos() {
   })
 }
 
+function displayTenPhotos() {
+  let photoArray = Photo.prototype.newPhotoArray().slice(0, 10);
+  
+  photoArray.forEach(function(photo) {
+    createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
+  })
+}
+
+function displayMessage() {
+  let cardsContainer = document.querySelector('.cards-container');
+  let uploadPhotoMessage = document.querySelector('.upload-photo-message');
+
+  if (Photo.prototype.newPhotoArray().length) {
+    uploadPhotoMessage.innerText = '';
+  } else {
+    uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
+  }
+}
+
+// Photo.prototype.newPhotoArray().length ? uploadPhotoMessage.innerText = '' : uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
+
 function filterSearch() {
   const searchBarInput = document.querySelector('.search-bar-input');
   const filterInput = searchBarInput.value.toLowerCase();
@@ -94,6 +115,9 @@ function filterSearch() {
   clearCardContainer();
   displayFilteredPhotos(filteredPhotos);
 }
+
+// const filteredPhotos = Photo.prototype.newPhotoArray().filter(photo => photo.title.toLowerCase().includes(filterInput) || photo.caption.toLowerCase().includes(filterInput));
+
 
 function clearInputs() {
   const titleInput = document.querySelector('.title-input');
@@ -125,6 +149,8 @@ function disableAddToAlbumBtn() {
     addToAlbumBtn.disabled = false;
   }
 }
+
+// titleInput.value === '' || captionInput.value === '' ? addToAlbumBtn.disabled = true : addToAlbumBtn.disabled = false;
 
 function pressEnterKey() {
   const key = event.keyCode;
@@ -211,21 +237,3 @@ function showLessButton() {
   displayTenPhotos();
 }
 
-function displayMessage() {
-  let cardsContainer = document.querySelector('.cards-container');
-  let uploadPhotoMessage = document.querySelector('.upload-photo-message');
-
-  if (Photo.prototype.newPhotoArray().length) {
-    uploadPhotoMessage.innerText = '';
-  } else {
-    uploadPhotoMessage.innerHTML = `<i class="fas fa-cloud-upload-alt"></i>Please upload your first photo`;
-  }
-}
-
-function displayTenPhotos() {
-  let photoArray = Photo.prototype.newPhotoArray().slice(0, 10);
-  
-  photoArray.forEach(function(photo) {
-    createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
-  })
-}

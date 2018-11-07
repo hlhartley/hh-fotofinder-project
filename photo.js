@@ -25,6 +25,8 @@ class Photo {
      localStorage.setItem('newPhotoArray', JSON.stringify(keepPhotos));
   }
 
+  // let keepPhotos = photos.filter(photo => photo.id != cardToDeleteId);
+
   updatePhoto(editedElement, editedID, editedText) {
     let photos = this.newPhotoArray();
     let targetPhoto = photos.find(function(targetPhoto) {
@@ -52,5 +54,4 @@ class Photo {
   }
 }
 
-
-
+// let foundPhoto = photos.find(photo => photo.id == photoId);

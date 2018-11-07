@@ -24,15 +24,6 @@ h2.card-title-output, .card-caption-output {
   text-align: left;
 }
 
-button:focus {
-  outline: 0;
-}
-
-button:hover {
-  background-color: #e26d5a;
-  opacity: .9;
-}
-
 /*Nav Bar Styles*/
 .nav-bar {
   align-content: center;
@@ -99,13 +90,6 @@ body {
 }
 
 /*Form Styles*/
-label {
-  color: #c2b2b4;
-  font-size: .8em;
-  font-weight: 400;
-  margin: 10px;
-}
-
 .user-input-form {
   align-items: center;
   display: flex;
@@ -124,9 +108,21 @@ label {
   width: 500px;
 }
 
+label {
+  color: #c2b2b4;
+  font-size: .8em;
+  font-weight: 400;
+  margin: 10px;
+}
+
 /*Button Styles*/
-.add-to-album-btn:disabled {
- opacity: .7;
+button:focus {
+  outline: 0;
+}
+
+button:hover {
+  background-color: #e26d5a;
+  opacity: .9;
 }
 
 .three-buttons-container {
@@ -136,6 +132,23 @@ label {
   font-size: .8em;
   margin: auto;
   width: 500px;
+}
+
+.show-buttons-container {
+  display: fixed;
+  bottom: 0;
+}
+
+.trash-fav-button-container {
+  background-color: #5b4447;
+  display: flex;
+  justify-content: space-between;
+  height: 45px;
+  padding: 10px;
+}
+
+.add-to-album-btn:disabled {
+ opacity: .7;
 }
 
 .choose-file-label {
@@ -163,11 +176,6 @@ label {
   height: 41px;
 }
 
-.show-buttons-container {
-  display: fixed;
-  bottom: 0;
-}
-
 #file {
   display: none;
 }
@@ -176,10 +184,6 @@ label {
   cursor: pointer;
   margin-bottom: 30px;
   width: 225px;
-}
-
-.display-none {
-  display: none;
 }
 
 .show-more-btn, .show-less-btn {
@@ -193,6 +197,36 @@ label {
 
 .more-less-toggle {
   display: none;
+}
+
+.display-none {
+  display: none;
+}
+
+.delete-btn, .favorite-btn {
+  cursor: pointer;
+  width: 25px;
+}
+
+.delete-btn {
+  background: url("images/delete.svg");
+  background-repeat: no-repeat;
+  border: none;
+}
+
+.delete-btn:hover {
+  background: url("images/delete-active.svg");
+   background-repeat: no-repeat;
+}
+
+.favorite-btn {
+  background: url("images/favorite.svg");
+  background-repeat: no-repeat;
+}
+
+.favorite-active-btn {
+  background: url("images/favorite-active.svg");
+  background-repeat: no-repeat;
 }
 
 /*Card Image Container Styles*/
@@ -223,69 +257,31 @@ article {
  width: 250px;
 }
 
-.trash-fav-button-container {
-  background-color: #5b4447;
-  display: flex;
-  justify-content: space-between;
-  height: 45px;
-  padding: 10px;
-}
-
 .card-caption-output {
   padding: 10px;
 }
 
-.delete-btn, .favorite-btn {
-  cursor: pointer;
-  width: 25px;
-}
-
-.delete-btn {
-  background: url("images/delete.svg");
-  background-repeat: no-repeat;
-  border: none;
-}
-
-.delete-btn:hover {
-  background: url("images/delete-active.svg");
-   background-repeat: no-repeat;
-}
-
-.favorite-btn {
-  background: url("images/favorite.svg");
-  background-repeat: no-repeat;
-}
-
-/*.favorite-btn:hover {
-  background: url("images/favorite-active.svg");
-  background-repeat: no-repeat;
-}*/
-
-.favorite-active-btn {
-  background: url("images/favorite-active.svg");
-  background-repeat: no-repeat;
-}
-
-.upload-photo-message {
-  color: #5b4447;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  font-size: 1.3em;
-  font-weight: 500;
-  letter-spacing: .8px;
-  padding: 77px;
-  text-align: center;
-  width: 100%;
-}
-
+/*Upload Photo Message Box*/
 .fa-cloud-upload-alt {
   color: #e26d5a;
   font-size: 1.7em;
   margin-bottom: 10px;
 }
 
-
+.upload-photo-message {
+  color: #5b4447;
+  display: flex;
+  flex-flow: column;
+  font-size: 1.3em;
+  font-weight: 500;
+  justify-content: center;
+  letter-spacing: .8px;
+  padding: 77px;
+  text-align: center;
+  width: 100%;
+}
+/*
+Media Queries*/
 @media screen and (max-width: 850px) {
   .nav-bar {
     align-items: center;
