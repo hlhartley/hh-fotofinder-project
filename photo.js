@@ -29,7 +29,6 @@ class Photo {
     localStorage.setItem('newPhotoArray', JSON.stringify(keepPhotos));
   }
 
-
   updatePhoto(editedElement, editedID, editedText) {
     let photos = this.newPhotoArray();
     let targetPhoto = photos.find(targetPhoto => targetPhoto.id == editedID);
@@ -52,6 +51,5 @@ class Photo {
     localStorage.setItem('newPhotoArray', JSON.stringify(photos));
     return foundPhoto;
   }
-
 }
 

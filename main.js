@@ -39,8 +39,6 @@ function appendPhotos() {
   imagesArr.forEach(photo => photoGallery.innerHTML += `<img src=${photo.file} />`)
 };
 
-
-
 function createCardTemplate(id, title, caption, photoresult, favorite) {
   const cardsContainer = document.querySelector('.cards-container');
   let favoriteBtnImg;
@@ -64,12 +62,6 @@ function createCardTemplate(id, title, caption, photoresult, favorite) {
   `;
   cardsContainer.innerHTML = card + cardsContainer.innerHTML; 
 };
-
-// function displayGroupOfPhotos(subsetOfPhotos) {
-//   subsetOfPhotos.forEach(function(photo) {
-//     createCardTemplate(photo.id, photo.title, photo.caption, photo.file);
-//   })
-// }
 
 function displayAllPhotos() {
   Photo.prototype.newPhotoArray().forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file, photo.favorite));
