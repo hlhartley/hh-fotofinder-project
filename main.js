@@ -37,7 +37,6 @@ function addPhoto(e) {
 
 function appendPhotos() {
   let imagesArr = JSON.parse(localStorage.getItem('photos')) || [];
-
   imagesArr.forEach(photo => photoGallery.innerHTML += `<img src=${photo.file} />`)
 };
 
@@ -83,7 +82,6 @@ function displayFavoritedPhotos() {
 
 function displayTenPhotos() {
   let photoArray = Photo.prototype.newPhotoArray().slice(0, 10);
-  
   photoArray.forEach(photo => createCardTemplate(photo.id, photo.title, photo.caption, photo.file));
 }
 
@@ -109,11 +107,8 @@ function filterSearch() {
 }
 
 function clearInputs() {
-  const titleInput = document.querySelector('.title-input');
-  const captionInput = document.querySelector('.caption-input');
-
-  titleInput.value = '';
-  captionInput.value = '';
+  document.querySelector('.title-input').value = '';
+  document.querySelector('.caption-input').value = '';
 }
 
 function deleteCard() {
@@ -159,9 +154,7 @@ function saveUserInput(element) {
 }
 
 function clearCardContainer() {
-  let cardsContainer = document.querySelector('.cards-container');
-
-  cardsContainer.innerHTML = '';
+  document.querySelector('.cards-container').cardsContainer.innerHTML = '';
 }
 
 function favoriteHeartButton() {
@@ -178,9 +171,7 @@ function favoriteHeartButton() {
 }
 
 function displayNumberOfFavorites() {
-  let numberOfFavs = document.querySelector('.view-favorites-btn');
-
-  numberOfFavs.innerText = `View ${favoritesCounter} Favorites`;
+  document.querySelector('.view-favorites-btn').numberOfFavs.innerText = `View ${favoritesCounter} Favorites`;
 }
 
 function viewFavoritesButton() {
@@ -201,21 +192,15 @@ function showAllButton() {
 }
 
 function showMoreButton() {
-  const showMoreBtn = document.querySelector('.show-more-btn');
-  const showLessBtn = document.querySelector('.show-less-btn');
-
-  showMoreBtn.classList.toggle('more-less-toggle');
-  showLessBtn.classList.toggle('more-less-toggle');
+  document.querySelector('.show-more-btn').classList.toggle('more-less-toggle');
+  document.querySelector('.show-less-btn').classList.toggle('more-less-toggle');
   clearCardContainer();
   displayAllPhotos();
 }
 
 function showLessButton() {
-  const showMoreBtn = document.querySelector('.show-more-btn');
-  const showLessBtn = document.querySelector('.show-less-btn');
-
-  showMoreBtn.classList.toggle('more-less-toggle');
-  showLessBtn.classList.toggle('more-less-toggle');
+  document.querySelector('.show-more-btn').classList.toggle('more-less-toggle');
+  document.querySelector('.show-less-btn').classList.toggle('more-less-toggle');
   clearCardContainer();
   displayTenPhotos();
 }
